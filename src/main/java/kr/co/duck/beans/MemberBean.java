@@ -1,6 +1,6 @@
 package kr.co.duck.beans;
 
-import javax.validation.constraints.Email;
+import javax.validation.constraints.Email;  
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 

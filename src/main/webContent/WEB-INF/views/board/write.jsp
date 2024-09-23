@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var='root' value='${pageContext.request.contextPath }/' />
@@ -26,22 +26,22 @@
 	<c:import url="/WEB-INF/views/include/sidebar.jsp" />
 	<div class="container">
 		<div style="font-size: 13px; margin-bottom: 20px;">
-			<div>(ÇöÀç ·Î±×ÀÎÁßÀÎ À¯Àú)</div>
+			<div>(í˜„ìž¬ ë¡œê·¸ì¸ì¤‘ì¸ ìœ ì €)</div>
 		</div>
 		<div style="margin-left: 30px">
 			<div>
 				<span class="custom-select"> <select name="category"
 					id="drop-down">
-						<option value="" disabled selected style="color: black;">Ä«Å×°í¸®</option>
-						<option style="color: #74E885">ÀÚÀ¯°Ô½ÃÆÇ</option>
-						<option style="color: #BC5ADC">¼Ò½Ä/Á¤º¸</option>
-						<option style="color: yellow;">À½¾Ç ÃßÃµ</option>
+						<option value="" disabled selected style="color: black;">ì¹´í…Œê³ ë¦¬</option>
+						<option style="color: #74E885">ìžìœ ê²Œì‹œíŒ</option>
+						<option style="color: #BC5ADC">ì†Œì‹/ì •ë³´</option>
+						<option style="color: yellow;">ìŒì•… ì¶”ì²œ</option>
 				</select>
 				</span> <input
 					style="width: 400px; font-size: 16px; padding: 3px 3px; margin-right: 20px;"
-					placeholder="Á¦¸ñ"> <span style="float: right;">
-					<button class="write-btn">Ãë¼Ò</button>
-					<button class="write-btn">ÀÛ¼º</button>
+					placeholder="ì œëª©"> <span style="float: right;">
+					<button class="write-btn">ì·¨ì†Œ</button>
+					<button class="write-btn">ìž‘ì„±</button>
 				</span>
 			</div>
 			<div class="main-container">
