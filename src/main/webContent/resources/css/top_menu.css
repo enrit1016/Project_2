@@ -5,11 +5,15 @@
 /* 기본 스타일 */
 body {
     background-color: #f8f9fa;
+	
 }
 
 .navbar {
     background-color: #ffffff; /* 네비게이션 바 배경색 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+	position : fixed;
+	width : 100%;
+	z-index: 1200; /* 다른 요소들 위에 표시되도록 설정 */
 }
 
 /* 네비게이션 바 항목을 가로로 배치 */

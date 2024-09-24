@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
+<c:set var='root' value="${pageContext.request.contextPath}/" />
+	<!-- 가변 값이라 메인화면 이외의 페이지에서는 404 에러가 발생함 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +19,7 @@
 	transition: left 0.5s ease; /* left 속성 변경 시 애니메이션 효과 설정 */
 	background-color: black; /* 배경색 */
 	color: white; /* 글자색 */
+	padding-top : 60px;
 }
 
 .sidebar.visible {
@@ -57,16 +60,16 @@
 </script>
 </head>
 <body>
-	<div class="sidebar-trigger" 
-		onmouseenter="toggleSidebar(true)"
-		onmouseleave="toggleSidebar(false)">
-	</div>
-	
+	<div class="sidebar-trigger" onmouseenter="toggleSidebar(true)"
+		onmouseleave="toggleSidebar(false)"></div>
+
 	<div class="sidebar">
 		<div class="close_sidebar" onclick="toggleSidebar(false)">◀</div>
 		<div>홈</div>
 		<div>커뮤니티</div>
-		<div>퀴즈</div>
+		<a href="${root }temp/tempMain">To tempMain</a> <br />
+		<a href="${root }quiz/quizMain">퀴즈</a> <br />
+		<a href="${root }temp/maniadbSearch">ManiaDB 검색</a>
 	</div>
 </body>
 </html>

@@ -88,6 +88,7 @@ function loadMusic(num){
     musicView.src = `${root }/img/${allMusic[num-1].img}.png`;         // 뮤직 이미지 로드
     musicView.alt = allMusic[num-1].name;                               // 뮤직 이미지 alt 태그 로드
     musicAudio.src = `${root }/audio/${allMusic[num-1].audio}.mp3`;    // 뮤직 로드
+    
 }
 
 
