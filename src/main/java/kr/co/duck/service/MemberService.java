@@ -40,4 +40,29 @@ public class MemberService {
 		}
 	}
 	
+	public boolean checkGoogleMemberNameExist(String membername) {
+		String member_name = memberDao.checkGoogleMemberNameExit(membername);
+		
+		if(member_name == null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public void addGoogleMemberInfo(String membername, String password, String email, String nickname) {
+		
+		if(checkGoogleMemberNameExist(membername)) {
+			memberDao.addGoogleMemberInfo(membername, password, email, nickname);
+		}
+		
+		MemberBean tempLoginMemberBean3 = memberDao.getGoogleLoginMemberInfo(membername);
+		
+		if(tempLoginMemberBean3 != null) {
+			loginMemberBean.setMember_id(tempLoginMemberBean3.getMember_id());
+			loginMemberBean.setMembername(tempLoginMemberBean3.getMembername());
+			loginMemberBean.setMemberLogin(true);
+		}
+	}
+	
 }

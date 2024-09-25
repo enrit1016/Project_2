@@ -1,45 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <style>
 .sidebar {
-	position: fixed; /* °íÁ¤ À§Ä¡·Î ¼³Á¤ (½ºÅ©·Ñ ½Ã¿¡µµ À§Ä¡ À¯Áö) */
-	left: -200px; /* ÃÊ±â »óÅÂ¿¡¼­ È­¸é ¿ŞÂÊ ¹Ù±ù¿¡ À§Ä¡ */
-	z-index: 1000; /* ´Ù¸¥ ¿ä¼Òµé À§¿¡ Ç¥½ÃµÇµµ·Ï ¼³Á¤ */
-	width: 180px; /* »çÀÌµå¹ÙÀÇ ³Êºñ */
-	padding: 10px; /* »çÀÌµå¹Ù ³»ºÎ ¿©¹é */
-	flex-direction: column; /* ³»ºÎ ¿ä¼ÒµéÀ» ¼öÁ÷À¸·Î ¹èÄ¡ */
-	height: 100vh; /* È­¸é ÀüÃ¼ ³ôÀÌ¿¡ ¸ÂÃã */
-	border-right: 1px solid gray; /* ¿À¸¥ÂÊ¿¡ È¸»ö Å×µÎ¸® Ãß°¡ */
-	transition: left 0.5s ease; /* left ¼Ó¼º º¯°æ ½Ã ¾Ö´Ï¸ŞÀÌ¼Ç È¿°ú ¼³Á¤ */
-	background-color: black; /* ¹è°æ»ö */
-	color: white; /* ±ÛÀÚ»ö */
+	position: fixed; /* ê³ ì • ìœ„ì¹˜ë¡œ ì„¤ì • (ìŠ¤í¬ë¡¤ ì‹œì—ë„ ìœ„ì¹˜ ìœ ì§€) */
+	left: -200px; /* ì´ˆê¸° ìƒíƒœì—ì„œ í™”ë©´ ì™¼ìª½ ë°”ê¹¥ì— ìœ„ì¹˜ */
+	z-index: 1000; /* ë‹¤ë¥¸ ìš”ì†Œë“¤ ìœ„ì— í‘œì‹œë˜ë„ë¡ ì„¤ì • */
+	width: 180px; /* ì‚¬ì´ë“œë°”ì˜ ë„ˆë¹„ */
+	padding: 10px; /* ì‚¬ì´ë“œë°” ë‚´ë¶€ ì—¬ë°± */
+	flex-direction: column; /* ë‚´ë¶€ ìš”ì†Œë“¤ì„ ìˆ˜ì§ìœ¼ë¡œ ë°°ì¹˜ */
+	height: 100vh; /* í™”ë©´ ì „ì²´ ë†’ì´ì— ë§ì¶¤ */
+	border-right: 1px solid gray; /* ì˜¤ë¥¸ìª½ì— íšŒìƒ‰ í…Œë‘ë¦¬ ì¶”ê°€ */
+	transition: left 0.5s ease; /* left ì†ì„± ë³€ê²½ ì‹œ ì• ë‹ˆë©”ì´ì…˜ íš¨ê³¼ ì„¤ì • */
+	background-color: black; /* ë°°ê²½ìƒ‰ */
+	color: white; /* ê¸€ììƒ‰ */
 }
 
 .sidebar.visible {
-	left: 0; /* visible Å¬·¡½º°¡ Ãß°¡µÇ¸é È­¸é¿¡ º¸ÀÌµµ·Ï ¿ŞÂÊ À§Ä¡ Á¶Á¤ */
+	left: 0; /* visible í´ë˜ìŠ¤ê°€ ì¶”ê°€ë˜ë©´ í™”ë©´ì— ë³´ì´ë„ë¡ ì™¼ìª½ ìœ„ì¹˜ ì¡°ì • */
 }
 
 .sidebar-trigger {
-	position: fixed; /* °íÁ¤ À§Ä¡·Î ¼³Á¤ */
-	left: 0; /* È­¸éÀÇ ¿ŞÂÊ¿¡ À§Ä¡ */
-	width: 40px; /* Å¬¸¯ °¡´ÉÇÑ ¿µ¿ªÀÇ ³Êºñ */
-	height: 100vh; /* Å¬¸¯ °¡´ÉÇÑ ¿µ¿ªÀÇ ³ôÀÌ */
-	background-color: transparent; /* Å¬¸¯ °¡´ÉÇÑ ¿µ¿ªÀ» Åõ¸íÇÏ°Ô ¼³Á¤ */
+	position: fixed; /* ê³ ì • ìœ„ì¹˜ë¡œ ì„¤ì • */
+	left: 0; /* í™”ë©´ì˜ ì™¼ìª½ì— ìœ„ì¹˜ */
+	width: 40px; /* í´ë¦­ ê°€ëŠ¥í•œ ì˜ì—­ì˜ ë„ˆë¹„ */
+	height: 100vh; /* í´ë¦­ ê°€ëŠ¥í•œ ì˜ì—­ì˜ ë†’ì´ */
+	background-color: transparent; /* í´ë¦­ ê°€ëŠ¥í•œ ì˜ì—­ì„ íˆ¬ëª…í•˜ê²Œ ì„¤ì • */
 }
 
 .close_sidebar {
-	text-align: right; /* ÅØ½ºÆ®¸¦ ¿À¸¥ÂÊ Á¤·Ä */
-	cursor: pointer; /* ¸¶¿ì½º Ä¿¼­¸¦ Æ÷ÀÎÅÍ·Î º¯°æ (Å¬¸¯ °¡´É Ç¥½Ã) */
+	text-align: right; /* í…ìŠ¤íŠ¸ë¥¼ ì˜¤ë¥¸ìª½ ì •ë ¬ */
+	cursor: pointer; /* ë§ˆìš°ìŠ¤ ì»¤ì„œë¥¼ í¬ì¸í„°ë¡œ ë³€ê²½ (í´ë¦­ ê°€ëŠ¥ í‘œì‹œ) */
 }
 </style>
 <title>Insert title here</title>
 <script>
-	let lastToggleTime = 0; // ¸¶Áö¸· Åä±Û ½Ã°£
-	const cooldownTime = 500; // ÄğÅ¸ÀÓ 500ms
+	let lastToggleTime = 0; // ë§ˆì§€ë§‰ í† ê¸€ ì‹œê°„
+	const cooldownTime = 500; // ì¿¨íƒ€ì„ 500ms
 
 	function toggleSidebar(visible) {
 		const sidebar = document.querySelector('.sidebar');
@@ -63,10 +63,10 @@
 	</div>
 	
 	<div class="sidebar">
-		<div class="close_sidebar" onclick="toggleSidebar(false)">¢¸</div>
-		<div>È¨</div>
-		<div>Ä¿¹Â´ÏÆ¼</div>
-		<div>ÄûÁî</div>
+		<div class="close_sidebar" onclick="toggleSidebar(false)">â—€</div>
+		<div>í™ˆ</div>
+		<div>ì»¤ë®¤ë‹ˆí‹°</div>
+		<div>í€´ì¦ˆ</div>
 	</div>
 </body>
 </html>

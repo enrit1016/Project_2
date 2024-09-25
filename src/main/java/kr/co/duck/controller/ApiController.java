@@ -1,4 +1,4 @@
-package kr.co.duck.social;
+package kr.co.duck.controller;
 
 import java.net.URI;
 
@@ -23,6 +23,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.duck.beans.MemberBean;
 import kr.co.duck.service.MemberService;
+import kr.co.duck.social.GoogleLoginResponse;
+import kr.co.duck.social.GoogleOAuthRequest;
 
 @Controller
 @PropertySource("/WEB-INF/properties/application.properties")
@@ -48,20 +50,32 @@ public class ApiController {
     
     @Resource(name = "loginMemberBean")
 	private MemberBean loginMemberBean;
+    
+    // 프로퍼티 값 출력 확인
+    @GetMapping("/testPropertyLoading")
+    public String testPropertyLoading() {
+        System.out.println("googleAuthUrl: " + googleAuthUrl);
+        System.out.println("googleLoginUrl: " + googleLoginUrl);
+        System.out.println("googleClientId: " + googleClientId);
+        System.out.println("googleRedirectUrl: " + googleRedirectUrl);
+        System.out.println("googleClientSecret: " + googleClientSecret);
+        return "member/propertyCheck";
+    }
 
     // 구글 로그인창 호출
     @GetMapping("/member/getGoogleAuthUrl")
     public ResponseEntity<?> getGoogleAuthUrl(HttpServletRequest request) throws Exception {
+    	System.out.println("Google Auth URL 요청 도착");
         String reqUrl = googleLoginUrl + "/o/oauth2/v2/auth?client_id=" + googleClientId + "&redirect_uri=" + googleRedirectUrl
                 + "&response_type=code&scope=email%20profile%20openid&access_type=offline";
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(URI.create(reqUrl));
-        //1.reqUrl 구글로그인 창을 띄우고, 로그인 후 /user/socialLogin 으로 리다이렉션하게 한다.
+        //1.reqUrl 구글로그인 창을 띄우고, 로그인 후 /member/socialLogin 으로 리다이렉션하게 한다.
         return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
     
     // 구글에서 리다이렉션
-    @GetMapping("/user/socialLogin")
+    @GetMapping("/Project_2/member/socialLogin")
     public String oauth_google_check(HttpServletRequest request,
                                      @RequestParam(value = "code") String authCode,
                                      HttpServletResponse response) throws Exception{
@@ -80,6 +94,11 @@ public class ApiController {
         //4.받은 토큰을 토큰객체에 저장
         GoogleLoginResponse googleLoginResponse = apiResponse.getBody();
 
+        //평안 임의추가
+        if (googleLoginResponse == null) {
+            throw new RuntimeException("구글 로그인 응답이 null입니다.");
+        }
+        
         String googleToken = googleLoginResponse.getId_token();
         //5.받은 토큰을 구글에 보내 유저정보를 얻는다.
         String requestUrl = UriComponentsBuilder.fromHttpUrl(googleAuthUrl + "/tokeninfo").queryParam("id_token",googleToken).toUriString();
@@ -94,9 +113,9 @@ public class ApiController {
         String sub = jsonNode.get("sub").asText();
         
         String userEmail = email;
-        String userName = name;
+        String nickname = name;
         String userPw = sub;
-		/* memberService.addGoogleUserInfo(userEmail,userPw,userEmail,userName); */
+		memberService.addGoogleMemberInfo(userEmail, userPw, userEmail, nickname);
         
         return "redirect:/main";
     }
