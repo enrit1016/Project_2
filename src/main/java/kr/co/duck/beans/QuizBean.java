@@ -1,6 +1,7 @@
 package kr.co.duck.beans;
 
 import java.util.List;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -8,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -47,14 +47,12 @@ public class QuizBean {
 
 	// OneToMany 관계 설정
 	@OneToMany
-	@JoinTable(name = "quiz_song", // 조인 테이블 이름
-			joinColumns = @JoinColumn(name = "quiz_id"), // 외래키
-			inverseJoinColumns = @JoinColumn(name = "song_id") // SongBean 엔티티의 외래키
-	)
+	@JoinColumn(name = "quiz_id") // song_ids 테이블에 외래 키로 저장됩니다.
 	private List<SongBean> songIds; // 퀴즈에 사용할 노래 정보 식별자 목록
 
 	@ElementCollection
-	@Column(name = "quiz_join_ids")
+	@CollectionTable(name = "quiz_join_ids", joinColumns = @JoinColumn(name = "quiz_id"))
+	@Column(name = "join_id")
 	private List<Integer> quizJoinIds; // 퀴즈에 참가한 사람들의 식별자 목록
 
 	// 기본 생성자 (필수)
@@ -78,6 +76,7 @@ public class QuizBean {
 		this.quizJoinIds = quizJoinIds;
 	}
 
+	// Getter 및 Setter
 	public int getQuizId() {
 		return quizId;
 	}
@@ -165,5 +164,4 @@ public class QuizBean {
 	public void setQuizJoinIds(List<Integer> quizJoinIds) {
 		this.quizJoinIds = quizJoinIds;
 	}
-
 }
