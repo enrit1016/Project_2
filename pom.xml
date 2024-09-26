@@ -240,6 +240,8 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.6</version>
 		</dependency>
+		
+		<!-- jsp 오류 발생 때문에 삽입함 -->
 		<dependency>
 			<groupId>jakarta.servlet.jsp</groupId>
 			<artifactId>jakarta.servlet.jsp-api</artifactId>
@@ -252,14 +254,14 @@
 			<version>5.0.0</version>
 			<scope>provided</scope>
 		</dependency>
-
-
 		<dependency>
 			<groupId>jakarta.servlet.jsp</groupId>
 			<artifactId>jakarta.servlet.jsp-api</artifactId>
 			<version>3.0.0</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		
 	</dependencies>
 
 </project>
