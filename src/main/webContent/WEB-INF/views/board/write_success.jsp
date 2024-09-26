@@ -4,5 +4,5 @@
 <c:set var='root' value='${pageContext.request.contextPath }/'/>
 <script>
 	alert('저장되었습니다')
-	location.href = '${root}board/read'
+	location.href = '${root}board/main'
 </script>

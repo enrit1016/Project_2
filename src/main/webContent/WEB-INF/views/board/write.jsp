@@ -42,7 +42,8 @@
 				</form:select>
 				</span>
 				<span>
-				<form:input path="content_title" style="width: 400px; font-size: 16px; padding: 3px; margin-right: 20px;" placeholder="제목" />
+				<form:input path="content_title" style="width: 400px; font-size: 16px; padding: 3px; margin-right: 20px;" 
+				placeholder="제목" />
 				</span>
 			</div>
 			
@@ -50,9 +51,11 @@
         		<textarea name="content_text" id="summernote">
         		</textarea>
     		</div>
+			
 			<div>
 				<form:input type='file' path="upload_file" class="form-control" accept="image/*"/>
 			</div>
+			
 			<span style="float: right; margin: 30px 0">
 				<form:button type="reset" class="write-btn"><a href="${root }board/main">취소</a></form:button>
 				<form:button class="write-btn">작성</form:button>

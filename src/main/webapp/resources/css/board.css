@@ -130,7 +130,6 @@ text-decoration: none;
 .showBest{
 	width: 200px;
 	margin: 0 20px; /* 좌우 여백을 20px로 설정 */
-    padding: 10px;
 	display: flex;
     flex-direction: column; /* 수직 방향으로 정렬 */
     align-items: center;
@@ -210,6 +209,11 @@ text-decoration: none;
 
 .fixed-content a:hover {
 	background: #BC5ADC;
+}
+
+.content_text{
+	text-align: center; 
+	margin: 20px 0;
 }
 
 select option {

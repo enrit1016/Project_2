@@ -35,7 +35,9 @@ public class MemberService {
 		MemberBean tempLoginMemberBean2 = memberDao.getLoginMemberInfo(tempLoginMemberBean);
 		
 		if(tempLoginMemberBean2 != null) {
-			loginMemberBean.setMembername(tempLoginMemberBean2.getMembername());
+			loginMemberBean.setMember_id(tempLoginMemberBean2.getMember_id());
+			loginMemberBean.setNickname(tempLoginMemberBean2.getNickname());
+			
 			loginMemberBean.setMemberLogin(true);
 		}
 	}

@@ -1,6 +1,7 @@
 package kr.co.duck.service;
 
-import java.io.File; 
+import java.io.File;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.duck.beans.ContentBean;
 import kr.co.duck.beans.MemberBean;
+import kr.co.duck.beans.ReplyBean;
 import kr.co.duck.dao.BoardDao;
 
 @Service
@@ -52,6 +54,18 @@ public class BoardService {
 		
 		writeContentBean.setMember_id(loginMemberBean.getMember_id());
 		boardDao.addContentInfo(writeContentBean);
+	}
+
+	public List<ContentBean> getContentList(){
+		return boardDao.getContentList();
+	}
+
+	public ContentBean getContentInfo(int content_idx) {
+		return boardDao.getContentInfo(content_idx);
+	}
+
+	public List<ReplyBean> getReplyList(int content_id){
+		return boardDao.getReplyList(content_id);
 	}
 	
 	public String getBoardInfoName(int board_info_idx) {

@@ -1,5 +1,4 @@
 @charset "UTF-8";
-<<<<<<< HEAD
 
 :root {
   --bs-blue: #0d6efd;
@@ -2227,18 +2226,7 @@ textarea.form-control-lg {
      -moz-appearance: none;
           appearance: none;
   -webkit-print-color-adjust: exact;
-=======
-/*!
-* Start Bootstrap - Shop Homepage v5.0.6 (https://startbootstrap.com/template/shop-homepage)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
-*/
-/*!
- * Bootstrap  v5.2.3 (https://getbootstrap.com/)
- * Copyright 2011-2022 The Bootstrap Authors
- * Copyright 2011-2022 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -4466,7 +4454,6 @@ textarea.form-control-lg {
           appearance: none;
   -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
->>>>>>> refs/heads/pyan
 }
 .form-check-input[type=checkbox] {
   border-radius: 0.25em;

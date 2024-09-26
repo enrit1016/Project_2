@@ -13,7 +13,9 @@ public class ContentBean {
 	private String write_date; //글 게시일
 	private String modified_date; //글 수정일	
 	private int board_id; // board_id FK
+	private String board_name; //해당 게시판 이름
 	private int member_id; // member_id FK
+	private String membername; //해당 글 작성자 이름
 
 	public int getContent_id() {
 		return content_id;
@@ -74,6 +76,18 @@ public class ContentBean {
 	}
 	public void setMember_id(int member_id) {
 		this.member_id = member_id;
+	}
+	public String getBoard_name() {
+		return board_name;
+	}
+	public void setBoard_name(String board_name) {
+		this.board_name = board_name;
+	}
+	public String getMembername() {
+		return membername;
+	}
+	public void setMember_name(String member_name) {
+		this.membername = member_name;
 	}
 
 }
