@@ -1,30 +1,30 @@
 package kr.co.duck.beans;
 
-import javax.validation.constraints.Email;  
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class MemberBean {
-
-	private int member_idx;
 	
-	private boolean memberIdExist;
+	private boolean memberNameExist;
 	private boolean memberLogin;	
 	
 	public MemberBean() {
-		this.memberIdExist = false;
+		this.memberNameExist = false;
 		this.memberLogin = false;
 	}
 	
-	@Size(min = 2, max = 10)
+	private int member_id; //로그인시 작성하는 id 아님 유저식별번호임
+	
+	@Size(min = 1, max = 10)
 	@Pattern(regexp = "[a-zA-Z0-9]*")
-	private int member_id; //로그인시 작성하는 id
+	private String membername;	// = 아이디
 	
 	@Size(min = 2, max = 5)
 	@Pattern(regexp = "[가-힣a-zA-Z0-9]*")
-	private String membername;	// 이름
+	private String nickname;	//닉네임
 	
-	@Size(min = 2, max = 20)
+	@Size(min = 5, max = 20)
 	@Pattern(regexp = "[a-zA-Z0-9!@#$%^&*()_+=\\-`~]*")
 	private String password;	//유저 비밀번호
 	
@@ -32,17 +32,14 @@ public class MemberBean {
 	@Pattern(regexp = "[a-zA-Z0-9!@#$%^&*()_+=\\-`~]*")
 	private String password2;	//유저 비밀번호2 (임의 추가
 	
-	@Pattern(regexp = "[0-9]{1,3}")
+	@Size(min = 1, max =3)
+	@Pattern(regexp = "[0-9]*")
 	private String age;	//유저 나이
 	
 	@Email
 	private String email;	//유저 이메일
 	
-	private String song_quantity;	
-	private String board_quantity; 
 	private String join_date; 
-	private String provider;
-	private String provider_id;
 	
 	@Pattern(regexp = "[가-힣a-zA-Z]*")
 	private String real_name; 
@@ -50,17 +47,12 @@ public class MemberBean {
 	private String role;
 	
 	
-	public int getMember_idx() {
-		return member_idx;
+	
+	public boolean isMemberNameExist() {
+		return memberNameExist;
 	}
-	public void setMember_idx(int member_idx) {
-		this.member_idx = member_idx;
-	}
-	public boolean isMemberIdExist() {
-		return memberIdExist;
-	}
-	public void setMemberIdExist(boolean memberIdExist) {
-		this.memberIdExist = memberIdExist;
+	public void setMemberNameExist(boolean memberNameExist) {
+		this.memberNameExist = memberNameExist;
 	}
 	public boolean isMemberLogin() {
 		return memberLogin;
@@ -79,6 +71,12 @@ public class MemberBean {
 	}
 	public void setMembername(String membername) {
 		this.membername = membername;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getPassword() {
 		return password;
@@ -104,35 +102,11 @@ public class MemberBean {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getSong_quantity() {
-		return song_quantity;
-	}
-	public void setSong_quantity(String song_quantity) {
-		this.song_quantity = song_quantity;
-	}
-	public String getBoard_quantity() {
-		return board_quantity;
-	}
-	public void setBoard_quantity(String board_quantity) {
-		this.board_quantity = board_quantity;
-	}
 	public String getJoin_date() {
 		return join_date;
 	}
 	public void setJoin_date(String join_date) {
 		this.join_date = join_date;
-	}
-	public String getProvider() {
-		return provider;
-	}
-	public void setProvider(String provider) {
-		this.provider = provider;
-	}
-	public String getProvider_id() {
-		return provider_id;
-	}
-	public void setProvider_id(String provider_id) {
-		this.provider_id = provider_id;
 	}
 	public String getReal_name() {
 		return real_name;

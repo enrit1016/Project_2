@@ -1,0 +1,162 @@
+@charset "utf-8";
+
+/* @import url('https://webfontworld.github.io/fontlab/LABDigital.css'); */
+@import url('https://webfontworld.github.io/earlyfont/EF_Hyunygothic.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'EF_Hyunygothic';
+    font-weight: normal;
+    cursor: none;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('./../img/6875483.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cursor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    pointer-events: none;
+    user-select: none;
+}
+
+.cursor img {
+    width: 15px;
+}
+
+.cursor .c2 {
+    width: 30px;
+    display: none;
+}
+
+#header {
+    position: fixed;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+#header h1 {
+    font-size: 20px;
+    color: #fff;
+    padding: 5px 0;
+}
+
+#header .time {
+    color: #fff;
+}
+
+.icon_box {
+    text-align: center;
+}
+
+.icon {
+    position: absolute;
+    left: 70px;
+    width: 54px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.icon img {
+    width: 54px;
+}
+
+.icon span {
+    display: block;
+    /* background: #000; */
+    color: #fff;
+    font-size: 14px;
+    padding: 2px;
+    white-space: nowrap;
+}
+
+.icon.active span {
+    background: #000;
+}
+
+.i1 {
+    top: 100px;
+}
+
+.i2 {
+    top: 200px;
+}
+
+.i3 {
+    top: 300px;
+}
+
+.i4 {
+    top: 400px;
+}
+
+.i5 {
+    top: 500px;
+}
+
+.i6 {
+    top: 600px;
+}
+
+.i6 img {
+    scale: 0.9;
+}
+
+.icon_iframe iframe {
+    position: absolute;
+    top: 50px;
+    left: 200px;
+    /* transform : translate(-50%, -50%); */
+    width: 85%;
+    height: 88%;
+    z-index: 3;
+}
+
+.icon_iframe.show {
+    display: block;
+    /* animation: foldOut 1s ease forwards; */
+}
+
+.icon_iframe {
+    /* transform: scale(0); */
+    display: none;
+}
+
+.code_close {
+    position: absolute;
+    top: 63px;
+    right: 35px;
+    scale: 1.5;
+    z-index: 4;
+}
+
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    color: #fff;
+    text-align: center;
+}
