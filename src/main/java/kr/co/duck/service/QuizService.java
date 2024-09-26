@@ -1,86 +1,57 @@
 package kr.co.duck.service;
 
-import static kr.co.duck.util.StatusCode.QUIZ_NOT_FOUND;
-
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.duck.beans.QuizBean;
-import kr.co.duck.domain.QuizMessage;
-import kr.co.duck.repository.QuizRepository;
-import kr.co.duck.util.CustomException;
 
 @Service
 public class QuizService {
+    private List<QuizBean> quizzes = new ArrayList<>();
 
-	private final QuizRepository quizRepository;
+    public QuizService() {
+    	System.out.println("퀴즈 서비스 초기화");
+        // 예시 퀴즈 추가
+        addExampleQuizzes();
+    }
 
-	// 생성자
-	public QuizService(QuizRepository quizRepository) {
-		this.quizRepository = quizRepository;
-	}
+    // 예시 퀴즈를 추가하는 메서드
+    private void addExampleQuizzes() {
+        QuizBean quiz1 = new QuizBean();
+        quiz1.setQuiz_id(1);
+        quiz1.setQuiz_title("노래 제목 맞추기");
+        quiz1.setQuiz_text("이 노래의 제목은 무엇일까요?");
+        quiz1.setQuiz_answer("소녀");
+        quizzes.add(quiz1);
 
-	@Transactional
-	public void createQuiz(QuizBean quizBean) {
-		quizRepository.save(quizBean);
-	}
+        QuizBean quiz2 = new QuizBean();
+        quiz2.setQuiz_id(2);
+        quiz2.setQuiz_title("가사 맞추기");
+        quiz2.setQuiz_text("이 가사는 어떤 노래일까요?");
+        quiz2.setQuiz_answer("사랑의 불시착");
+        quizzes.add(quiz2);
+    }
+    
 
-	@Transactional(readOnly = true)
-	public List<QuizBean> getAllQuizzes() {
-		return quizRepository.findAll();
-	}
+    // 모든 퀴즈를 반환하는 메서드
+    public List<QuizBean> getAllQuizzes() {
+    	System.out.println("현재 퀴즈 목록: " + quizzes);
+        return new ArrayList<>(quizzes); // 새로운 리스트로 반환하여 원본 보호
+    }
 
-	@Transactional(readOnly = true)
-	public QuizBean getQuiz(int quizId) {
-		return quizRepository.findById(quizId).orElseThrow(() -> new CustomException(QUIZ_NOT_FOUND));
-	}
-
-	@Transactional
-	public void updateQuiz(int quizId, QuizBean quizBean) {
-		QuizBean existingQuiz = getQuiz(quizId);
-		existingQuiz.setQuizTitle(quizBean.getQuizTitle());
-		existingQuiz.setQuizText(quizBean.getQuizText());
-		quizRepository.save(existingQuiz);
-	}
-
-	@Transactional
-	public void deleteQuiz(int quizId) {
-		quizRepository.deleteById(quizId);
-	}
-
-	@Transactional
-	public boolean submitAnswer(QuizBean quizBean) {
-		QuizBean existingQuiz = getQuiz(quizBean.getQuizId());
-		return existingQuiz.getQuizAnswer().equalsIgnoreCase(quizBean.getQuizAnswer());
-	}
-
-	// 강제 종료 메서드 추가
-	@Transactional
-	public void forcedEndQuiz(int roomId, String nickname) {
-		// 퀴즈 강제 종료를 위한 로직 구현
-		Map<String, Object> contentSet = new HashMap<>();
-		contentSet.put("alert", nickname + " 님에 의해 게임이 강제로 종료되었습니다!");
-
-		sendQuizMessage(roomId, QuizMessage.MessageType.FORCEDENDQUIZ, contentSet, null, nickname);
-
-		// 필요한 정리 작업을 여기서 수행
-		// 예를 들어, 퀴즈방 상태 변경, 관련된 엔티티 업데이트 등
-	}
-
-	// 퀴즈 메시지 전송 메서드
-	public void sendQuizMessage(int roomId, QuizMessage.MessageType messageType, Map<String, Object> contentSet,
-			String senderId, String sender) {
-		QuizMessage<Object> quizMessage = new QuizMessage<>();
-		quizMessage.setQuizRoomId(roomId);
-		quizMessage.setSenderId(senderId);
-		quizMessage.setSender(sender);
-		quizMessage.setContent(contentSet);
-		quizMessage.setType(messageType);
-
-		// 실제 메시지 전송에 대한 로직을 추가 (예: WebSocket, 메시지 큐 등)
-	}
+    // ID로 퀴즈를 가져오는 메서드
+    public QuizBean getQuizById(int id) {
+        return quizzes.stream()
+                      .filter(quiz -> quiz.getQuiz_id() == id)
+                      .findFirst()
+                      .orElse(null); // 없을 경우 null 반환
+    }
+    
+    // 정답 확인 메서드
+    public boolean checkAnswer(int quizId, String answer) {
+        QuizBean quiz = getQuizById(quizId);
+        return quiz != null && quiz.getQuiz_answer().equalsIgnoreCase(answer);
+    }
 }
