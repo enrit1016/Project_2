@@ -2,8 +2,14 @@ package kr.co.duck.beans;
 
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -11,6 +17,7 @@ import javax.persistence.Table;
 public class QuizBean {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "quiz_id")
 	private int quizId; // 퀴즈 식별 아이디
 
@@ -21,16 +28,10 @@ public class QuizBean {
 	private String quizText; // 퀴즈 설명
 
 	@Column(name = "quiz_question_type")
-	private String quizQuestionType; // 퀴즈 유형 (예: 노래 가사 맞추기)
+	private String quizQuestionType; // 퀴즈 유형
 
 	@Column(name = "quiz_answer")
 	private String quizAnswer; // 퀴즈 정답
-
-	// Assuming songIds is a list of SongBeans and not directly stored in the quiz
-	// table
-	private List<SongBean> songIds; // 퀴즈에 사용할 노래 정보 식별자 목록
-
-	private List<Integer> quizJoinIds; // 퀴즈에 참가한 사람들의 식별자 목록
 
 	@Column(name = "quiz_score")
 	private int quizScore; // 퀴즈 정답 점수
@@ -44,7 +45,39 @@ public class QuizBean {
 	@Column(name = "user_id")
 	private int userId; // 유저 식별번호
 
-	// Getter 및 Setter
+	// OneToMany 관계 설정
+	@OneToMany
+	@JoinTable(name = "quiz_song", // 조인 테이블 이름
+			joinColumns = @JoinColumn(name = "quiz_id"), // 외래키
+			inverseJoinColumns = @JoinColumn(name = "song_id") // SongBean 엔티티의 외래키
+	)
+	private List<SongBean> songIds; // 퀴즈에 사용할 노래 정보 식별자 목록
+
+	@ElementCollection
+	@Column(name = "quiz_join_ids")
+	private List<Integer> quizJoinIds; // 퀴즈에 참가한 사람들의 식별자 목록
+
+	// 기본 생성자 (필수)
+	public QuizBean() {
+	}
+
+	// 생성자
+	public QuizBean(int quizId, String quizTitle, String quizText, String quizQuestionType, String quizAnswer,
+			int quizScore, String quizHint, int joinUser, int userId, List<SongBean> songIds,
+			List<Integer> quizJoinIds) {
+		this.quizId = quizId;
+		this.quizTitle = quizTitle;
+		this.quizText = quizText;
+		this.quizQuestionType = quizQuestionType;
+		this.quizAnswer = quizAnswer;
+		this.quizScore = quizScore;
+		this.quizHint = quizHint;
+		this.joinUser = joinUser;
+		this.userId = userId;
+		this.songIds = songIds;
+		this.quizJoinIds = quizJoinIds;
+	}
+
 	public int getQuizId() {
 		return quizId;
 	}
@@ -85,22 +118,6 @@ public class QuizBean {
 		this.quizAnswer = quizAnswer;
 	}
 
-	public List<SongBean> getSongIds() {
-		return songIds;
-	}
-
-	public void setSongIds(List<SongBean> songIds) {
-		this.songIds = songIds;
-	}
-
-	public List<Integer> getQuizJoinIds() {
-		return quizJoinIds;
-	}
-
-	public void setQuizJoinIds(List<Integer> quizJoinIds) {
-		this.quizJoinIds = quizJoinIds;
-	}
-
 	public int getQuizScore() {
 		return quizScore;
 	}
@@ -133,10 +150,20 @@ public class QuizBean {
 		this.userId = userId;
 	}
 
-	@Override
-	public String toString() {
-		return "QuizBean [quizId=" + quizId + ", quizTitle=" + quizTitle + ", quizText=" + quizText
-				+ ", quizQuestionType=" + quizQuestionType + ", quizAnswer=" + quizAnswer + ", quizScore=" + quizScore
-				+ ", quizHint=" + quizHint + ", joinUser=" + joinUser + ", userId=" + userId + "]";
+	public List<SongBean> getSongIds() {
+		return songIds;
 	}
+
+	public void setSongIds(List<SongBean> songIds) {
+		this.songIds = songIds;
+	}
+
+	public List<Integer> getQuizJoinIds() {
+		return quizJoinIds;
+	}
+
+	public void setQuizJoinIds(List<Integer> quizJoinIds) {
+		this.quizJoinIds = quizJoinIds;
+	}
+
 }

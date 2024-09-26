@@ -1,11 +1,12 @@
 package kr.co.duck.config;
 
-import kr.co.duck.websocket.SignalHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.*;
+
+import kr.co.duck.websocket.SignalHandler;
 
 // 기능: 웹소켓 사용에 필요한 설정
 @Configuration

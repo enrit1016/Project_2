@@ -8,7 +8,7 @@ import kr.co.duck.service.QuizService;
 
 @Controller
 @RequestMapping
-public class ChattingController {
+public class ChatController {
 
 	@Autowired
 	private QuizService quizService;

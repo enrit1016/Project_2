@@ -11,7 +11,6 @@ import kr.co.duck.domain.QuizCommand;
 import kr.co.duck.domain.Reward;
 import kr.co.duck.repository.RewardRepository;
 
-// 기능: 리워드 서비스
 @Service
 public class RewardService {
 

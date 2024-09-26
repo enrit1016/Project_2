@@ -2,7 +2,7 @@ package kr.co.duck.beans;
 
 import java.time.LocalDateTime;
 
-public class ChattingBean {
+public class ChatBean {
 
 	private int chat_id; // 채팅창의 인덱스번호
 	private int chat_user_id; // 유저 식별번호

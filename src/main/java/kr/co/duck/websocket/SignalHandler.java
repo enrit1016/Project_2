@@ -1,23 +1,22 @@
 package kr.co.duck.websocket;
 
+import java.io.IOException;
+
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import kr.co.duck.beans.WebSocketMessageBean;
 import kr.co.duck.beans.WebSocketResponseBean;
 import kr.co.duck.repository.SessionRepository;
 import kr.co.duck.service.QuizRoomService;
 import kr.co.duck.service.WebSocketService;
-import kr.co.duck.util.CustomException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.stereotype.Component;
-import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.handler.TextWebSocketHandler;
-import javax.transaction.Transactional;
-import java.io.IOException;
-import java.util.*;
-
-import static kr.co.duck.util.StatusCode.SESSION_ROOM_NOT_FOUND;
 
 @Component
 public class SignalHandler extends TextWebSocketHandler {

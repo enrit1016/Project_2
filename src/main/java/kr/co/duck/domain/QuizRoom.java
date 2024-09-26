@@ -4,7 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 
 // 기능: 퀴즈방 Entity
 @Entity
@@ -38,6 +40,10 @@ public class QuizRoom extends Timestamped {
 		this.status = status;
 	}
 
+	@Version // 낙관적 락을 위한 버전 필드
+	@Column(name = "version")
+	private int version;
+
 	// Getter
 	public int getQuizRoomId() {
 		return quizRoomId;
@@ -67,6 +73,15 @@ public class QuizRoom extends Timestamped {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+	
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
 
 	@Override
 	public String toString() {
