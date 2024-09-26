@@ -14,5 +14,15 @@ public class TempController {
 	public String main() {
 		return "temp/tempMain";
 	}
+	
+	@GetMapping("/SCSStest")
+	public String testSCSS() {
+		return "temp/SCSStest";
+	}
 
+	
+	@GetMapping("/modalUI")
+	public String testmodalUI() {
+		return "temp/modalUI";
+	}
 }

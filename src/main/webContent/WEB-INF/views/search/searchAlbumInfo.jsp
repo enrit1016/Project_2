@@ -11,12 +11,21 @@
 </head>
 <body>
 
-	<!-- 상단바 불러오기 -->
-	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	
-	<!-- 사이드 바 불러오기 -->
-	<c:import url="/WEB-INF/views/include/sidebar.jsp" />
+	
+	<p>앨범명 : ${result.albumName }</p>
+	<p>아티스트 : ${result.artistName}</p>
+	<br />
+	<p>설명 : ${result.description}</p>
+	<hr />
+	<img src="${result.image}" alt="이미지를 불러올 수 없습니다." />
+	<br />
+ 
 
+	<!-- 앨범 이미지 리스트 출력 -->
+	<c:forEach var="track" items="${result.trackList}" varStatus="status">
+		<p>${track}</p> <br />
+	</c:forEach>
 
 
 </body>

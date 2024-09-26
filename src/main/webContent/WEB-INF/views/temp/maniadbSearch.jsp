@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <title>Music Search</title>
@@ -93,6 +94,8 @@ img {
 							<p>Album: ${music.albumTitle}</p>
 							<p>Artist: ${music.albumArtist}</p>
 							<a href="${music.guid}">상세 페이지로</a>
+							<a href="parseDetail?guid=${music.guid}&type=album">제작중인 페이지로</a>
+							
 						</div>
 					</c:forEach>
 				</c:when>
@@ -103,7 +106,8 @@ img {
 							<img src="${artist.image}" alt="${artist.artistName}">
 							<p>Period: ${artist.period}</p>
 							<p>Description: ${artist.description}</p> <br />
-							<a href="${artist.link}">상세 페이지로</a>
+							<a href="parseDetail?guid=${artist.link}&type=artist">제작중인 페이지로</a>
+							<a href="parseDetail?guid=${artist.link}&type=artist">제작중인 페이지로</a>
 							<c:forEach var="majorSong" items="${artist.majorSongList}"
 								varStatus="status">
 								<tr>
@@ -122,6 +126,7 @@ img {
 							<p>Artist: ${album.albumArtist}</p>
 							<p>Release Company: ${album.releaseCompany}</p>
 							<a href="${album.guid}">상세 페이지로</a>
+							<a href="parseDetail?guid=${fn:escapeXml(album.guid)}&type=album">제작중인 페이지로</a>
 							<c:forEach var="track" items="${album.trackList}"
 								varStatus="status">
 								<tr>

@@ -10,14 +10,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	<!-- 상단바 불러오기 -->
-	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-	
-	<!-- 사이드 바 불러오기 -->
-	<c:import url="/WEB-INF/views/include/sidebar.jsp" />
+
+	<p>아티스트 : ${result.artistName}</p>
+	<br />
+	<p>시대 : ${result.period}</p>
+	<hr />
+	<p>설명 : ${result.description}</p>
+	<hr />
+	<img src="${result.image}" alt="이미지를 불러올 수 없습니다." />
+	<br />
 
 
+	<!-- 앨범 이미지 리스트 출력 -->
+	<c:forEach var="albumImage" items="${result.albumImageList}" varStatus="status">
+		<img src="${albumImage}" alt="이미지를 불러올 수 없습니다." />
+		<br />
+	</c:forEach>
+
+	<!-- 앨범 이름 리스트 출력 -->
+	<c:forEach var="albumName" items="${result.albumNameList}" varStatus="status">
+		<p>${albumName}</p>
+		<br />
+	</c:forEach>
 
 </body>
 </html>

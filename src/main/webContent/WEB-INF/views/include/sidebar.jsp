@@ -69,7 +69,9 @@
 		<div>커뮤니티</div>
 		<a href="${root }temp/tempMain">To tempMain</a> <br />
 		<a href="${root }quiz/quizMain">퀴즈</a> <br />
-		<a href="${root }temp/maniadbSearch">ManiaDB 검색</a>
+		<a href="${root }temp/maniadbSearch">ManiaDB 검색</a><br />
+		<a href="${root }temp/SCSStest">SCSStest</a><br />
+		<a href="${root }temp/modalUI">modalUI</a>
 	</div>
 </body>
 </html>

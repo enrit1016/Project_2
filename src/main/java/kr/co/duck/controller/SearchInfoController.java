@@ -20,11 +20,6 @@ public class SearchInfoController {
 		return "search/searchAlbumInfo";
 	}
 
-	@GetMapping("/searchArtist")
-	public String searchArtist() {
-		return "search/searchArtistInfo";
-	}
-
 	@GetMapping("/searchMusic")
 	public String searchMusic() {
 		return "search/searchMusicInfo";
