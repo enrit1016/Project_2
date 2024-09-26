@@ -37,19 +37,22 @@
 				</ul>
 
 				<ul class="navbar-nav ml-auto">
+					<!-- 닉네임을 세션에서 가져와서 표시 -->
 					<c:choose>
-						<c:when test="${loginMemberBean.memberLogin == true }">
-							<!-- 로그인시 -->
-							<li class="nav-item"><a href="${root }member/modify"
-								class="nav-link">정보수정</a></li>
-							<li class="nav-item"><a href="${root }member/logout"
-								class="nav-link">로그아웃</a></li>							
+						<c:when test="${loginMemberBean.memberLogin == true}">
+							<!-- 로그인 시 -->
+							<li class="nav-item"><a href="${root}member/info"
+								class="nav-link">${loginMemberBean.nickname }</a></li>
+							<%-- <li class="nav-item"><a href="${root}member/modify"
+								class="nav-link">정보수정</a></li> --%>
+							<li class="nav-item"><a href="${root}member/logout"
+								class="nav-link">로그아웃</a></li> 
 						</c:when>
 						<c:otherwise>
-							<!-- 로그아웃시 -->
-							<li class="nav-item"><a href="${root }member/login"
+							<!-- 로그아웃 시 -->
+							<li class="nav-item"><a href="${root}member/login"
 								class="nav-link">로그인</a></li>
-							<li class="nav-item"><a href="${root }member/join"
+							<li class="nav-item"><a href="${root}member/join"
 								class="nav-link">회원가입</a></li>
 						</c:otherwise>
 					</c:choose>

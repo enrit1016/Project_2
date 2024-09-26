@@ -5,6 +5,7 @@ import java.net.URI;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,17 +51,6 @@ public class ApiController {
     
     @Resource(name = "loginMemberBean")
 	private MemberBean loginMemberBean;
-    
-    // 프로퍼티 값 출력 확인
-    @GetMapping("/testPropertyLoading")
-    public String testPropertyLoading() {
-        System.out.println("googleAuthUrl: " + googleAuthUrl);
-        System.out.println("googleLoginUrl: " + googleLoginUrl);
-        System.out.println("googleClientId: " + googleClientId);
-        System.out.println("googleRedirectUrl: " + googleRedirectUrl);
-        System.out.println("googleClientSecret: " + googleClientSecret);
-        return "member/propertyCheck";
-    }
 
     // 구글 로그인창 호출
     @GetMapping("/member/getGoogleAuthUrl")
@@ -75,10 +65,11 @@ public class ApiController {
     }
     
     // 구글에서 리다이렉션
-    @GetMapping("/Project_2/member/socialLogin")
+    @GetMapping("/member/socialLogin")
     public String oauth_google_check(HttpServletRequest request,
                                      @RequestParam(value = "code") String authCode,
-                                     HttpServletResponse response) throws Exception{
+                                     HttpServletResponse response,
+                                     HttpSession session) throws Exception{
         //2.약속된 토큰을 받기위한 객체 생성
         GoogleOAuthRequest googleOAuthRequest = GoogleOAuthRequest
                 .builder()

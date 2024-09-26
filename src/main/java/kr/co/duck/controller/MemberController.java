@@ -1,6 +1,7 @@
 package kr.co.duck.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,13 +50,16 @@ public class MemberController {
 	
 	@PostMapping("/login_pro")
 	public String login_pro(@Valid @ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean, 
-							BindingResult result) {
+							BindingResult result, HttpSession session) {
 		if(result.hasErrors()) {
 			return "member/login";
 		}
 		memberService.getLoginMemberInfo(tempLoginMemberBean);
 		
 		if(loginMemberBean.isMemberLogin() == true) {
+			 // 로그인 성공 시 세션에 사용자 정보를 저장
+	        session.setAttribute("loginMemberBean", loginMemberBean);
+	        
 			return "member/login_success";
 		}else {
 			return "member/login_fail";
@@ -91,31 +95,19 @@ public class MemberController {
 		return "member/join_success";
 	}
 	
+	@GetMapping("/info")
+	public String info(@ModelAttribute("infoMemberBean") MemberBean infoMemberBean) {
+		
+		infoMemberBean = memberService.getModifyUserInfo(infoMemberBean);
+		
+		return "member/info";
+	}
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		MemberValidator validator1 = new MemberValidator();
 		binder.addValidators(validator1);
 	}
 	
-	
-	/*
-	 * @GetMapping("/checkMemberNameExist")
-	 * 
-	 * @ResponseBody public boolean
-	 * checkMemberNameExist(@RequestParam(value="membername")String membername) {
-	 * return true; }
-	 */
-	
-	/*
-	 * // 아이디 중복 체크
-	 * 
-	 * @GetMapping("/checkMemberNameExist/{membername}")
-	 * 
-	 * @ResponseBody public String checkMemberNameExist(@PathVariable("membername")
-	 * String membername) { // 아이디 중복 확인 로직 (서비스 호출 등) boolean isExist =
-	 * memberService.checkMemberNameExist(membername);
-	 * 
-	 * // 중복 여부에 따라 "true" 또는 "false" 반환 return isExist ? "true" : "false"; }
-	 */
 	
 }

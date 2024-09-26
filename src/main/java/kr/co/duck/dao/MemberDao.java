@@ -36,4 +36,8 @@ public class MemberDao {
 		return memberMapper.getGoogleLoginMemberInfo(membername);
 	}
 	
+	public MemberBean getModifyMemberInfo(int member_id) {
+		return memberMapper.getModifyMemberInfo(member_id);
+	}
+	
 }

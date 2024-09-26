@@ -35,7 +35,8 @@ public class MemberService {
 		MemberBean tempLoginMemberBean2 = memberDao.getLoginMemberInfo(tempLoginMemberBean);
 		
 		if(tempLoginMemberBean2 != null) {
-			loginMemberBean.setMembername(tempLoginMemberBean2.getMembername());
+			loginMemberBean.setMember_id(tempLoginMemberBean2.getMember_id());			
+			loginMemberBean.setNickname(tempLoginMemberBean2.getNickname());
 			loginMemberBean.setMemberLogin(true);
 		}
 	}
@@ -61,8 +62,26 @@ public class MemberService {
 		if(tempLoginMemberBean3 != null) {
 			loginMemberBean.setMember_id(tempLoginMemberBean3.getMember_id());
 			loginMemberBean.setMembername(tempLoginMemberBean3.getMembername());
+			loginMemberBean.setNickname(tempLoginMemberBean3.getNickname());
+			loginMemberBean.setEmail(tempLoginMemberBean3.getEmail());
 			loginMemberBean.setMemberLogin(true);
 		}
+	}
+	
+	
+	// 유저 정보 수정
+	public MemberBean getModifyUserInfo(MemberBean modifyMemberBean) {
+		
+		MemberBean tempModifyMemberBean = memberDao.getModifyMemberInfo(loginMemberBean.getMember_id());
+		modifyMemberBean.setMembername(tempModifyMemberBean.getMembername());
+		modifyMemberBean.setAge(tempModifyMemberBean.getAge());
+		modifyMemberBean.setEmail(tempModifyMemberBean.getEmail());
+		modifyMemberBean.setReal_name(tempModifyMemberBean.getReal_name());
+		modifyMemberBean.setNickname(tempModifyMemberBean.getNickname());
+		modifyMemberBean.setJoin_date(tempModifyMemberBean.getJoin_date());
+		modifyMemberBean.setLogintype(tempModifyMemberBean.getLogintype());
+		
+		return modifyMemberBean;
 	}
 	
 }
