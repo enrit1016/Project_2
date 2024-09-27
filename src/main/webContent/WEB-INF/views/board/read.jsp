@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/board.css">
 <title>Insert title here</title>
 </head>
@@ -23,35 +23,40 @@
 		</div>
 		<div>
 		<div>
-		<h3>자유게시판  제목1~~~~~~~~~~~~~~~~~</h3>
+		<h3>${readContentBean.content_title }</h3>
 		</div>
 		<div style="font-size: 13px;">
-			<div>글쓴이1</div>
-			<div>2024-09-13  ⊙34</div>
+			<div>${readContentBean.membername }</div>
+			<div>${readContentBean.write_date }</div>
 		</div>
-		<div style="text-align: center; margin: 20px 0;">
+		<div class="content_text">
+		${readContentBean.content_text } <br />
 		강의 시청 링크는 맨 아래에!<br />
 		<br />
 		프로작곡가가 되고싶다면?<br />
 		NEXT PRODUCER!
 		<br />
 		<br />
-		이미지를 클릭해서 '작곡가 레슨' 더 알아보기!
+		이미지를 클릭해서 '작곡가 레슨' 더 알아보기! <br />
+		<c:if test="${not empty readContentBean.image}">
+		<img src="${root }upload/${readContentBean.image }" width="15%"/>
+		</c:if>
 		</div>
 		<div>
-		<div style="display: flex;">♡2 ©0 <span style="margin-left: auto;">공유 | 저장</span></div>
+		<div style="display: flex;">♡${readContentBean.like_count } 
+		<span style="margin-left: auto;">
+		<a href="${root }board/modify" class="write-btn">수정</a> | 
+		<a href="${root }board/delete" class="write-btn">삭제</a>
+		</span></div>
 		</div>
 		<div class="comment-container">
+		<c:forEach var='obj' items="${replyList }">
 			<div style="font-size: 14px;">
-			<span>댓글쓴이 1</span>
-			<span style="color: gray;">2024-09-14</span>
+			<span>${obj.membername }</span>
+			<span style="color: gray;">${obj.reply_date }</span>
 			</div>
-			<div>댓글 내용 1</div>
-			<div style="font-size: 14px;">
-			<span>댓글쓴이 2</span>
-			<span style="color: gray;">2024-09-14</span>
-			</div>
-			<div>댓글 내용 2</div>
+			<div>${obj.reply_text }</div>
+		</c:forEach>
 		</div>
 		<div style="border: 1px solid gray; width: 100%; height: 100px; position: relative;">
 			<input
@@ -68,7 +73,7 @@
 		<h3 style="margin-right: 120px;">BEST</h3>
 		<div class="bestContent">
 			<span>제목2123123</span>
-			<span style="margin-left: auto; margin-right: 10px;">♡9 ⊙47</span>
+			<span style="margin-left: auto; margin-right: 10px;">♡9</span>
 		</div>
 	</div>
 </body>

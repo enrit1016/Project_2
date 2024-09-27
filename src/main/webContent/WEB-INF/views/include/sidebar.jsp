@@ -37,6 +37,20 @@
 }
 </style>
 <title>Insert title here</title>
+
+</head>
+<body>
+	<div class="sidebar-trigger" 
+		onmouseenter="toggleSidebar(true)"
+		onmouseleave="toggleSidebar(false)">
+	</div>
+	
+	<div class="sidebar">
+		<div class="close_sidebar" onclick="toggleSidebar(false)">◀</div>
+		<div>홈</div>
+		<div>커뮤니티</div>
+		<div>퀴즈</div>
+	</div>
 <script>
 	let lastToggleTime = 0; // 마지막 토글 시간
 	const cooldownTime = 500; // 쿨타임 500ms
@@ -55,18 +69,5 @@
 		}
 	}
 </script>
-</head>
-<body>
-	<div class="sidebar-trigger" 
-		onmouseenter="toggleSidebar(true)"
-		onmouseleave="toggleSidebar(false)">
-	</div>
-	
-	<div class="sidebar">
-		<div class="close_sidebar" onclick="toggleSidebar(false)">◀</div>
-		<div>홈</div>
-		<div>커뮤니티</div>
-		<div>퀴즈</div>
-	</div>
 </body>
 </html>

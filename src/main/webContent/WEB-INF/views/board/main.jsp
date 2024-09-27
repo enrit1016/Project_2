@@ -51,6 +51,7 @@
 				<table>
 					<thead>
 						<tr>
+							<th>글 번호</th>
 							<th>카테고리</th>
 							<th>제목</th>
 							<th>글쓴이</th>
@@ -59,38 +60,18 @@
 						</tr>
 					</thead>
 					<tbody align="center">
-						<tr>
-							<td>자유게시판</td>
-							<td><a href="${root }board/read">제목1~~~~~~~~~~~~~~~~~</a></td>
-							<td>글쓴이1</td>
-							<td>2024-09-13</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>소식/정보</td>
-							<td>제목2</td>
-							<td>글쓴이2</td>
-							<td>2024-09-13</td>
-							<td>9</td>
-						</tr>
-						<tr>
-							<td>음악추천</td>
-							<td>제목3</td>
-							<td>글쓴이3</td>
-							<td>2024-09-13</td>
-							<td>8</td>
-						</tr>
-						<%-- <c:forEach var='obj' items="${contentList }">
-		<tr>
-			<td class="text-center d-none d-md-table-cell">${obj.content_idx }</td>
-			<td><a href='${root }board/read?board_info_idx=${board_info_idx}&content_idx=${obj.content_idx}&page=${page}'>${obj.content_subject }</a></td>
-			<td class="text-center d-none d-md-table-cell">${obj.content_writer_name }</td>
-			<td class="text-center d-none d-md-table-cell">${obj.content_date }</td>
-		</tr>
-		</c:forEach> --%>
+						<c:forEach var='obj' items="${contentList }">
+							<tr>
+								<td>${obj.content_id }</td>
+								<td>${obj.board_name }</td>
+								<td><a href="${root }board/read?content_id=${obj.content_id }">${obj.content_title }</a></td>
+								<td>${obj.membername }</td>
+								<td>${obj.write_date }</td>
+								<td>${obj.like_count }</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-
 
 			</div>
 
@@ -147,7 +128,7 @@
 		<div class="bestContent">
 			<div>
 			<span>제목2123123</span>
-			<span style="margin-left: auto; margin-right: 10px;">♡9 ⊙47</span>
+			<span style="margin-left: auto;">♡9</span>
 			</div>
 		</div>
 	</div>

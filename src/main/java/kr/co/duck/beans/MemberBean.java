@@ -6,7 +6,6 @@ import javax.validation.constraints.Size;
 
 public class MemberBean {
 	
-
 	private boolean memberNameExist;
 	private boolean memberLogin;	
 	

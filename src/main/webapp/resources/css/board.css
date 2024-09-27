@@ -11,19 +11,25 @@ p {
 }
 
 body {
+	margin: auto;
+    padding: 0;
 	background: black;
 	display: flex;
 	justify-content: center;
 	min-height: 100vh; /* 화면 전체 높이를 사용 */
-	margin: 0 55px 0 90px;
+	width: 100%;
+	max-width: 1170px;
+	overflow-x: hidden; 
 }
 
 .container {
+	display: flex;
 	flex-direction: column; /* 수직 방향으로 정렬 */
-	width: 80%; /* 원하는 너비 설정 */
-	max-width: 1200px; /* 최대 너비 설정 */
+	width: 100%; /* 원하는 너비 설정 */
 	background: black; /* 배경 색상 추가 (선택 사항) */
 	padding: 20px; /* 패딩 추가 */
+	margin: 0 auto;
+	justify-content: center;
 }
 
 button.c_btn {
@@ -124,7 +130,6 @@ text-decoration: none;
 .showBest{
 	width: 200px;
 	margin: 0 20px; /* 좌우 여백을 20px로 설정 */
-    padding: 10px;
 	display: flex;
     flex-direction: column; /* 수직 방향으로 정렬 */
     align-items: center;
@@ -204,6 +209,11 @@ text-decoration: none;
 
 .fixed-content a:hover {
 	background: #BC5ADC;
+}
+
+.content_text{
+	text-align: center; 
+	margin: 20px 0;
 }
 
 select option {
