@@ -46,6 +46,7 @@ public class MemberBean {
 	private String real_name; 
 	
 	private String role;
+	private String logintype;
 	
 	
 	
@@ -120,6 +121,12 @@ public class MemberBean {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public String getLogintype() {
+		return logintype;
+	}
+	public void setLogintype(String logintype) {
+		this.logintype = logintype;
 	}
 	
 	

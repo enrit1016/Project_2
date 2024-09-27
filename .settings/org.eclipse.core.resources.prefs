@@ -1,7 +1,4 @@
 eclipse.preferences.version=1
-
+encoding//src/main/webContent/WEB-INF/properties/error_message.properties=UTF-8
 encoding//src/main/webContent/WEB-INF/views/board/main.jsp=UTF-8
 encoding//src/main/webContent/WEB-INF/views/board/read.jsp=UTF-8
-
-encoding//src/main/webContent/WEB-INF/properties/error_message.properties=UTF-8
-

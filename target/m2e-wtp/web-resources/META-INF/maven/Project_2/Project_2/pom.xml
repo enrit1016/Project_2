@@ -26,6 +26,7 @@
 		<jstl-version>1.2</jstl-version>
 		<org.springframework-version>5.3.18</org.springframework-version>
 		<javax.annotation-version>1.3.2</javax.annotation-version>
+		<org.slf4j-version>2.0.7</org.slf4j-version>
 	</properties>
 	<!-- 라이브러리 세팅 -->
 	<dependencies>
@@ -155,6 +156,32 @@
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
 			<version>2.3.1</version>
+		</dependency>
+		<!-- 현석 추가
+		-->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>6.1.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>6.1.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-client -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-client</artifactId>
+			<version>6.0.2</version>
+		</dependency>
+			<!--  https://mvnrepository.com/artifact/org.slf4j/slf4j-api  -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
 		</dependency>
 	</dependencies>
 

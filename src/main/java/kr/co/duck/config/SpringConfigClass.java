@@ -40,6 +40,7 @@ public class SpringConfigClass extends AbstractAnnotationConfigDispatcherServlet
 	   //52428800 :  업로드 데이터의 용량 (1024*50) 50M로 설정
 	   //524288000 : 파일데이터를 포함한 전체용량 500M 설정
 	   //0 : 파일의 임계값
+	   
 	   @Override
 	   protected void customizeRegistration(Dynamic registration) {
 	      super.customizeRegistration(registration);

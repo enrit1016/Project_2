@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- 상단 메뉴 부분 -->
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 	<div class="container" style="margin-top: 100px">
@@ -19,10 +20,10 @@
 				<div class="card shadow">
 					<div class="card-body">
 						<c:if test="${fail == true }">
-						<div class="alert alert-danger">
-							<h3>로그인 실패</h3>
-							<p>아이디 비밀번호를 확인해주세요</p>
-						</div>
+							<div class="alert alert-danger">
+								<h3>로그인 실패</h3>
+								<p>아이디 비밀번호를 확인해주세요</p>
+							</div>
 						</c:if>
 						<form:form action="${root }member/login_pro" method='post'
 							modelAttribute="tempLoginMemberBean">
@@ -40,8 +41,8 @@
 								<form:button class='btn btn-primary'>로그인</form:button>
 								<a href="${root }member/join" class="btn btn-danger">회원가입</a>
 							</div>
-							<div class="social-login-buttons">
-								<button type ="button" onclick="location.href='${root}member/getGoogleAuthUrl'"></button>
+							<div class="googleSignUp">
+								<button type ="button" onclick="location.href='${root}member/getGoogleAuthUrl'">구글로그인</button>
 							</div>
 						</form:form>
 					</div>

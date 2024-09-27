@@ -24,4 +24,20 @@ public class MemberDao {
 		return memberMapper.getLoginMemberInfo(tempLoginMemberBean);
 	}
 	
+	public String checkGoogleMemberNameExit(String membername) {
+		return memberMapper.checkGoogleMemberNameExit(membername);
+	}
+	
+	public void addGoogleMemberInfo(String membername, String password, String email, String nickname) {
+		memberMapper.addGoogleMemberInfo(membername, password, email, nickname);
+	}
+	
+	public MemberBean getGoogleLoginMemberInfo(String membername) {
+		return memberMapper.getGoogleLoginMemberInfo(membername);
+	}
+	
+	public MemberBean getModifyMemberInfo(int member_id) {
+		return memberMapper.getModifyMemberInfo(member_id);
+	}
+	
 }
