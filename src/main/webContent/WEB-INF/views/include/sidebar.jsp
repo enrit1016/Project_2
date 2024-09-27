@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<c:set var='root' value="${pageContext.request.contextPath}/" />
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +52,11 @@
 		<div>홈</div>
 		<div>커뮤니티</div>
 		<div>퀴즈</div>
+		<a href="${root }temp/tempMain">To tempMain</a> <br />
+		<a href="${root }quiz/quizMain">QUIZ</a> <br />
+		<a href="${root }temp/maniadbSearch">ManiaDB SEARCH</a><br />
+		<a href="${root }temp/SCSStest">SCSStest</a><br />
+		<a href="${root }temp/modalUI">modalUI</a>
 	</div>
 <script>
 	let lastToggleTime = 0; // 마지막 토글 시간

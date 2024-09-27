@@ -1,0 +1,182 @@
+html {
+  font: normal 100%/1.5 "Roboto Slab", serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: #1e88e5;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5em;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  color: white;
+}
+.title b {
+  font-weight: 700;
+}
+
+.mocean-modal-wrap {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 350px;
+}
+.btn-group button {
+  outline: 1px solid rgb(42.5, 122.0454545455, 255);
+  transform-origin: 50% 50%;
+}
+.btn-group button:hover {
+  transform: scale(1.1);
+}
+
+button {
+  appearance: none;
+  border: none;
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.15), 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+  flex: 1 1 10%;
+  padding: 0.875rem;
+  transition: 100ms all ease-in-out;
+  width: 100%;
+  font-family: "Roboto Slab", serif;
+  font-weight: 400;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  background: #448aff;
+  color: white;
+}
+button:hover {
+  cursor: pointer;
+  background: rgb(57.8, 131.6181818182, 255);
+}
+button:focus {
+  outline: none;
+}
+
+.mocean-modal-wrap {
+  position: fixed;
+  max-width: 320px;
+  width: 100%;
+  z-index: 2000;
+  visibility: hidden;
+  backface-visibility: hidden;
+  width: 100%;
+  margin: auto;
+}
+
+.mocean-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition-duration: 500ms;
+  background: #0d47a1;
+}
+
+.mocean-show.mocean-modal-wrap {
+  visibility: visible;
+}
+.mocean-show.mocean-modal-wrap ~ .mocean-modal-overlay {
+  visibility: visible;
+  opacity: 1;
+}
+
+.mocean-modal {
+  transition-property: all;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0, 1.5);
+  animation-duration: 1000ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0, 0, 1.5);
+}
+
+.slide-in-top .mocean-content {
+  transform: translate3d(0, -100%, 0);
+  opacity: 0;
+}
+
+.mocean-show.slide-in-top .mocean-content {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.slide-in-right .mocean-content {
+  transform: translate3d(30%, 0, 0);
+  opacity: 0;
+}
+
+.mocean-show.slide-in-right .mocean-content {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.slide-in-bottom .mocean-content {
+  transform: translate3d(0, 30%, 0);
+  opacity: 0;
+}
+
+.mocean-show.slide-in-bottom .mocean-content {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.slide-in-left .mocean-content {
+  transform: translate3d(-30%, 0, 0);
+  opacity: 0;
+}
+
+.mocean-show.slide-in-left .mocean-content {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.slide-out-bottom .mocean-content {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.slide-out-top .mocean-content {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.slide-out-right .mocean-content {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-out-left .mocean-content {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.mocean-perspective {
+  perspective: 600px;
+}
+
+.mocean-show {
+  visibility: visible;
+}
+
+/*# sourceMappingURL=modalUI.css.map */

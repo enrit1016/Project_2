@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${root}css/top_menu.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<!-- Navigation-->
