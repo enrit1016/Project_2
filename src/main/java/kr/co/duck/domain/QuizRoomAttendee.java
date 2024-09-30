@@ -11,21 +11,22 @@ import javax.persistence.OneToOne;
 
 // 기능: 퀴즈방과 유저를 연결하는 중간 Entity
 @Entity
-public class QuizRoomAttendee extends Timestamped {
+public class QuizRoomAttendee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int quizRoomMemberId; // 변경: Long -> int
+	@Column(name = "quiz_room_member_id") // 칼럼명 지정
+	private int quizRoomMemberId;
 
-	@JoinColumn(name = "quizroomid")
+	@JoinColumn(name = "quiz_room_id") // 칼럼명 지정
 	@OneToOne(fetch = FetchType.LAZY)
 	private QuizRoom quizRoom;
 
-	@JoinColumn(name = "memberid")
+	@JoinColumn(name = "member_id") // 칼럼명 지정
 	@OneToOne(fetch = FetchType.LAZY)
 	private Member member;
 
-	@Column(nullable = false)
+	@Column(name = "member_nickname", nullable = false) // 칼럼명 지정
 	private String memberNickname;
 
 	// 기본 생성자
@@ -34,8 +35,6 @@ public class QuizRoomAttendee extends Timestamped {
 
 	// 모든 필드를 포함하는 생성자
 	public QuizRoomAttendee(int quizRoomMemberId, QuizRoom quizRoom, Member member, String memberNickname) {
-																												
-																												
 		this.quizRoomMemberId = quizRoomMemberId;
 		this.quizRoom = quizRoom;
 		this.member = member;
@@ -50,7 +49,7 @@ public class QuizRoomAttendee extends Timestamped {
 	}
 
 	// Getter 메서드
-	public int getQuizRoomMemberId() { 
+	public int getQuizRoomMemberId() {
 		return quizRoomMemberId;
 	}
 

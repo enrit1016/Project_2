@@ -1,13 +1,12 @@
 package kr.co.duck.domain;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +19,10 @@ public class QuizQuery {
 
 	// 퀴즈 방 전체 조회 (페이징 처리)
 	public Page<QuizRoom> findQuizRoomByPageable(Pageable pageable) {
+		if (pageable == null) {
+			pageable = PageRequest.of(0, 10); // 기본값 설정
+		}
+
 		String query = "SELECT q FROM QuizRoom q ORDER BY q.quizRoomId DESC";
 		List<QuizRoom> quizRooms = entityManager.createQuery(query, QuizRoom.class)
 				.setFirstResult((int) pageable.getOffset()).setMaxResults(pageable.getPageSize()).getResultList();
@@ -65,6 +68,10 @@ public class QuizQuery {
 
 	// 퀴즈 방 키워드 검색
 	public Page<QuizRoom> findQuizRoomByContainingKeyword(Pageable pageable, String keyword) {
+		if (pageable == null) {
+			pageable = PageRequest.of(0, 10); // 기본값 설정
+		}
+
 		String query = "SELECT q FROM QuizRoom q WHERE q.quizRoomName LIKE :keyword ORDER BY q.quizRoomId DESC";
 		List<QuizRoom> quizRooms = entityManager.createQuery(query, QuizRoom.class)
 				.setParameter("keyword", "%" + keyword + "%").setFirstResult((int) pageable.getOffset())

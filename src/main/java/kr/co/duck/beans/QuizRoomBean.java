@@ -1,55 +1,53 @@
 package kr.co.duck.beans;
 
-import java.util.List;
-
 public class QuizRoomBean {
-	private int id;
-	private String room_name;
-	private String room_password;
-	private String owner;
-	private boolean status;
-	private int member_count;
-	private List<MemberBean> members;
+	private int quizRoomId; // quiz_room_id와 매핑
+	private String quizRoomName; // quiz_room_name과 매핑
+	private String quizRoomPassword; // quiz_room_password와 매핑
+	private String owner; // owner와 매핑
+	private int status; // status와 매핑 (0: 닫힘, 1: 열림)
+	private int memberCount; // member_count와 매핑
+	private String members; // 콤마로 구분된 멤버 ID 문자열
 
 	// 기본 생성자
 	public QuizRoomBean() {
 	}
 
 	// 모든 필드를 포함하는 생성자
-	public QuizRoomBean(int id, String room_name, String room_password, String owner, boolean status, int member_count,
-			List<MemberBean> members) {
-		this.id = id;
-		this.room_name = room_name;
-		this.room_password = room_password;
+	public QuizRoomBean(int quizRoomId, String quizRoomName, String quizRoomPassword, String owner, int status,
+			int memberCount, String members) {
+		this.quizRoomId = quizRoomId;
+		this.quizRoomName = quizRoomName;
+		this.quizRoomPassword = quizRoomPassword;
 		this.owner = owner;
 		this.status = status;
-		this.member_count = member_count;
+		this.memberCount = memberCount;
 		this.members = members;
 	}
 
 	// Getter와 Setter
-	public int getId() {
-		return id;
+	public int getQuizRoomId() {
+		return quizRoomId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setQuizRoomId(int quizRoomId) {
+		this.quizRoomId = quizRoomId;
 	}
 
-	public String getRoom_name() {
-		return room_name;
+	public String getQuizRoomName() {
+		return quizRoomName;
 	}
 
-	public void setRoom_name(String room_name) {
-		this.room_name = room_name;
+	public void setQuizRoomName(String quizRoomName) {
+		this.quizRoomName = quizRoomName;
 	}
 
-	public String getRoom_password() {
-		return room_password;
+	public String getQuizRoomPassword() {
+		return quizRoomPassword;
 	}
 
-	public void setRoom_password(String room_password) {
-		this.room_password = room_password;
+	public void setQuizRoomPassword(String quizRoomPassword) {
+		this.quizRoomPassword = quizRoomPassword;
 	}
 
 	public String getOwner() {
@@ -60,33 +58,34 @@ public class QuizRoomBean {
 		this.owner = owner;
 	}
 
-	public boolean isStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
-	public int getMember_count() {
-		return member_count;
+	public int getMemberCount() {
+		return memberCount;
 	}
 
-	public void setMember_count(int member_count) {
-		this.member_count = member_count;
+	public void setMemberCount(int memberCount) {
+		this.memberCount = memberCount;
 	}
 
-	public List<MemberBean> getMembers() {
+	public String getMembers() {
 		return members;
 	}
 
-	public void setMembers(List<MemberBean> members) {
+	public void setMembers(String members) {
 		this.members = members;
 	}
 
 	@Override
 	public String toString() {
-		return "QuizRoomBean [id=" + id + ", room_name=" + room_name + ", owner=" + owner + ", status=" + status
-				+ ", member_count=" + member_count + ", members=" + members + "]";
+		return "QuizRoomBean{" + "quizRoomId=" + quizRoomId + ", quizRoomName='" + quizRoomName + '\''
+				+ ", quizRoomPassword='" + quizRoomPassword + '\'' + ", owner='" + owner + '\'' + ", status=" + status
+				+ ", memberCount=" + memberCount + ", members='" + members + '\'' + '}';
 	}
 }

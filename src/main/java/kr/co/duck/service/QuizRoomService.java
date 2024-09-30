@@ -73,8 +73,12 @@ public class QuizRoomService {
 				memberList.add(memberBean);
 			}
 
+			// 멤버 리스트를 콤마로 구분된 문자열로 변환
+			String membersString = memberList.stream().map(member -> String.valueOf(member.getMember_id()))
+					.reduce((a, b) -> a + "," + b).orElse("");
+
 			QuizRoomBean quizRoomBean = new QuizRoomBean(room.getQuizRoomId(), room.getQuizRoomName(),
-					room.getQuizRoomPassword(), room.getOwner(), room.isStatus(), memberList.size(), memberList);
+					room.getQuizRoomPassword(), room.getOwner(), room.getStatus(), memberList.size(), membersString);
 
 			if (!memberList.isEmpty()) {
 				quizRoomList.add(quizRoomBean);
@@ -92,10 +96,12 @@ public class QuizRoomService {
 		memberCommand.saveMember(member); // 멤버 정보 저장
 
 		// QuizRoom 객체 생성
-		QuizRoom quizRoom = new QuizRoom(quizRoomBean.getRoom_name(), // 방 이름
-				quizRoomBean.getRoom_password(), // 방 비밀번호
+		QuizRoom quizRoom = new QuizRoom(quizRoomBean.getQuizRoomName(), // 방 이름
+				quizRoomBean.getQuizRoomPassword(), // 방 비밀번호
 				member.getNickname(), // 방장 닉네임
-				true // 방 상태 (true로 설정)
+				1, // 방 상태 (1: 열림)
+				quizRoomBean.getMemberCount(), // 현재 멤버 수
+				quizRoomBean.getMembers() // 멤버 ID 문자열
 		);
 
 		quizCommand.saveQuizRoom(quizRoom); // 퀴즈 방 저장
@@ -110,7 +116,7 @@ public class QuizRoomService {
 		roomInfo.put("roomId", Integer.toString(quizRoom.getQuizRoomId()));
 		roomInfo.put("quizRoomPassword", quizRoom.getQuizRoomPassword());
 		roomInfo.put("owner", quizRoom.getOwner());
-		roomInfo.put("status", String.valueOf(quizRoom.isStatus()));
+		roomInfo.put("status", String.valueOf(quizRoom.getStatus()));
 
 		return roomInfo;
 	}
@@ -120,7 +126,7 @@ public class QuizRoomService {
 	public Map<String, String> enterQuizRoom(int roomId, Member member) {
 		QuizRoom enterQuizRoom = quizQuery.findQuizRoomByRoomIdLock(roomId);
 
-		if (!enterQuizRoom.isStatus()) {
+		if (enterQuizRoom.getStatus() == 0) {
 			throw new CustomException(ALREADY_PLAYING);
 		}
 
@@ -146,7 +152,7 @@ public class QuizRoomService {
 		roomInfo.put("quizRoomName", enterQuizRoom.getQuizRoomName());
 		roomInfo.put("roomId", String.valueOf(enterQuizRoom.getQuizRoomId()));
 		roomInfo.put("owner", enterQuizRoom.getOwner());
-		roomInfo.put("status", String.valueOf(enterQuizRoom.isStatus()));
+		roomInfo.put("status", String.valueOf(enterQuizRoom.getStatus()));
 
 		return roomInfo;
 	}
@@ -171,8 +177,12 @@ public class QuizRoomService {
 				memberList.add(memberBean);
 			}
 
+			// 멤버 리스트를 콤마로 구분된 문자열로 변환
+			String membersString = memberList.stream().map(member -> String.valueOf(member.getMember_id()))
+					.reduce((a, b) -> a + "," + b).orElse("");
+
 			QuizRoomBean quizRoomBean = new QuizRoomBean(room.getQuizRoomId(), room.getQuizRoomName(),
-					room.getQuizRoomPassword(), room.getOwner(), room.isStatus(), memberList.size(), memberList);
+					room.getQuizRoomPassword(), room.getOwner(), room.getStatus(), memberList.size(), membersString);
 
 			if (!memberList.isEmpty()) {
 				quizRoomList.add(quizRoomBean);
@@ -224,7 +234,7 @@ public class QuizRoomService {
 			sessionRepository.deleteAllClientsInRoom(roomId);
 		}
 
-		if (!enterQuizRoom.isStatus()) {
+		if (enterQuizRoom.getStatus() == 0) {
 			quizService.forcedEndQuiz(roomId, member.getNickname());
 		}
 

@@ -25,10 +25,22 @@ public class QuizController {
 		return quizService.getAllQuizzes();
 	}
 
-	@GetMapping("/{quizId}")
-	public QuizBean getQuiz(@PathVariable int quizId) {
-		return quizService.getQuiz(quizId);
+	// 퀴즈 ID로 퀴즈 가져오기
+	@GetMapping("/details/{quizId}")
+	public QuizBean getQuiz(@PathVariable String quizId) {
+	    try {
+	        int id = Integer.parseInt(quizId);
+	        QuizBean quiz = quizService.getQuiz(id);
+	        if (quiz != null) {
+	            return quiz;
+	        } else {
+	            throw new IllegalArgumentException("해당 ID의 퀴즈를 찾을 수 없습니다: " + id);
+	        }
+	    } catch (NumberFormatException e) {
+	        throw new IllegalArgumentException("잘못된 퀴즈 ID입니다: " + quizId);
+	    }
 	}
+
 
 	@PutMapping("/update/{quizId}")
 	public String updateQuiz(@PathVariable int quizId, @RequestBody QuizBean quizBean) {
@@ -47,4 +59,6 @@ public class QuizController {
 		boolean isCorrect = quizService.submitAnswer(quizBean);
 		return isCorrect ? "정답입니다!" : "오답입니다!";
 	}
+	
+
 }

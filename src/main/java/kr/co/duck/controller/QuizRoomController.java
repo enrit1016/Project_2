@@ -21,15 +21,18 @@ public class QuizRoomController {
 	}
 
 	// 퀴즈방 전체 조회 API
-	@GetMapping("/quizrooms")
+	@GetMapping
 	public ResponseEntity<QuizRoomListBean> getAllQuizRooms(Pageable pageable) {
 		QuizRoomListBean quizRooms = quizRoomService.getAllQuizRooms(pageable);
 		return ResponseEntity.ok(quizRooms);
 	}
 
 	// 퀴즈방 키워드 검색 API
-	@GetMapping("/quizrooms/search")
+	@GetMapping("/search")
 	public ResponseEntity<QuizRoomListBean> searchQuizRooms(Pageable pageable, @RequestParam String keyword) {
+		if (keyword == null || keyword.isEmpty()) {
+			return ResponseEntity.badRequest().body(new QuizRoomListBean()); // 빈 결과 반환 또는 적절한 메시지
+		}
 		QuizRoomListBean quizRooms = quizRoomService.searchQuizRoom(pageable, keyword);
 		return ResponseEntity.ok(quizRooms);
 	}

@@ -332,9 +332,9 @@
 	<br />
 	<hr />
 	<br />
-		<h1>퀴즈페이지입니다.</h1>
+	
 	<h2>
-		<a href="${root }quiz/quizMain">To quizMain</a>
+		<a href="${root }quiz/quizlobby">To quizMain</a>
 	</h2>
 
 </body>
