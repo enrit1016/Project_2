@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var='root' value="${pageContext.request.contextPath }" />
+<c:set var='root' value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>퀴즈 로비</title>
 <link rel="stylesheet" href="${root}/css/quizlobby.css">
+<script>
+	// root 변수를 JS로 전달
+	const root = '${root}';
+</script>
 <script src="${root}/js/quizlobby.js"></script>
 </head>
 <body>
@@ -22,11 +26,9 @@
 				<c:forEach var="room" items="${rooms}">
 					<li>
 						<div class="room-info">
-							<span class="room-name">${room.roomCode}</span> <span
-								class="room-tags">${room.tags}</span> <span
-								class="room-language">${room.language}</span> <span
-								class="room-users">${room.curUserNum}/${room.maxUserNum}</span>
-							<button onclick="joinRoom('${room.roomCode}')">참여</button>
+							<span class="room-name">${room.quizRoomName}</span> <span
+								class="room-users">${room.memberCount}명</span>
+							<button onclick="joinRoom('${room.quizRoomId}')">참여</button>
 						</div>
 					</li>
 				</c:forEach>

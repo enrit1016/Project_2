@@ -34,7 +34,6 @@ import kr.co.duck.util.UserDetailsImpl;
 
 @Service
 public class QuizRoomService {
-	// 의존성 주입
 	private final QuizService quizService;
 	private final MemberQuery memberQuery;
 	private final MemberCommand memberCommand;
@@ -43,7 +42,6 @@ public class QuizRoomService {
 	private final SessionRepository sessionRepository;
 	private final QuizRoomRepository quizRoomRepository;
 
-	// 생성자
 	public QuizRoomService(QuizService quizService, MemberQuery memberQuery, MemberCommand memberCommand,
 			QuizQuery quizQuery, QuizCommand quizCommand, SessionRepository sessionRepository,
 			QuizRoomRepository quizRoomRepository) {
@@ -80,45 +78,34 @@ public class QuizRoomService {
 			QuizRoomBean quizRoomBean = new QuizRoomBean(room.getQuizRoomId(), room.getQuizRoomName(),
 					room.getQuizRoomPassword(), room.getOwner(), room.getStatus(), memberList.size(), membersString);
 
-			if (!memberList.isEmpty()) {
-				quizRoomList.add(quizRoomBean);
-			}
+			quizRoomList.add(quizRoomBean);
 		}
 
 		int totalPage = rooms.getTotalPages();
 		return new QuizRoomListBean(totalPage, quizRoomList);
 	}
 
-	// 퀴즈룸 생성
+	// 퀴즈방 생성
 	@Transactional
-	public Map<String, String> makeQuizRoom(Member member, QuizRoomBean quizRoomBean) {
-		member.updateMakeRoom(1); // 퀴즈방 생성 횟수 업데이트
-		memberCommand.saveMember(member); // 멤버 정보 저장
+	public QuizRoomBean createRoom(QuizRoomBean quizRoomBean) {
+		// 더미 사용자 (로그인한 사용자 정보 대신 더미 데이터 사용)
+		Member member = memberQuery.findMemberById(1); // ID 1인 사용자를 더미로 가져옴
+
+		member.updateMakeRoom(1);
+		memberCommand.saveMember(member);
 
 		// QuizRoom 객체 생성
-		QuizRoom quizRoom = new QuizRoom(quizRoomBean.getQuizRoomName(), // 방 이름
-				quizRoomBean.getQuizRoomPassword(), // 방 비밀번호
-				member.getNickname(), // 방장 닉네임
-				1, // 방 상태 (1: 열림)
-				quizRoomBean.getMemberCount(), // 현재 멤버 수
-				quizRoomBean.getMembers() // 멤버 ID 문자열
-		);
+		QuizRoom quizRoom = new QuizRoom(quizRoomBean.getQuizRoomName(), quizRoomBean.getQuizRoomPassword(),
+				member.getNickname(), 1, quizRoomBean.getMemberCount(), quizRoomBean.getMembers());
 
-		quizCommand.saveQuizRoom(quizRoom); // 퀴즈 방 저장
+		quizCommand.saveQuizRoom(quizRoom);
 
 		// 퀴즈 방 참가자 객체 생성
 		QuizRoomAttendee quizRoomAttendee = new QuizRoomAttendee(quizRoom, member);
-		quizCommand.saveQuizRoomAttendee(quizRoomAttendee); // 참가자 정보 저장
+		quizCommand.saveQuizRoomAttendee(quizRoomAttendee);
 
-		// 방 정보 반환
-		Map<String, String> roomInfo = new HashMap<>();
-		roomInfo.put("quizRoomName", quizRoom.getQuizRoomName());
-		roomInfo.put("roomId", Integer.toString(quizRoom.getQuizRoomId()));
-		roomInfo.put("quizRoomPassword", quizRoom.getQuizRoomPassword());
-		roomInfo.put("owner", quizRoom.getOwner());
-		roomInfo.put("status", String.valueOf(quizRoom.getStatus()));
-
-		return roomInfo;
+		return new QuizRoomBean(quizRoom.getQuizRoomId(), quizRoom.getQuizRoomName(), quizRoom.getQuizRoomPassword(),
+				quizRoom.getOwner(), quizRoom.getStatus(), quizRoom.getMemberCount(), quizRoomBean.getMembers());
 	}
 
 	// 퀴즈룸 입장
@@ -177,16 +164,13 @@ public class QuizRoomService {
 				memberList.add(memberBean);
 			}
 
-			// 멤버 리스트를 콤마로 구분된 문자열로 변환
 			String membersString = memberList.stream().map(member -> String.valueOf(member.getMember_id()))
 					.reduce((a, b) -> a + "," + b).orElse("");
 
 			QuizRoomBean quizRoomBean = new QuizRoomBean(room.getQuizRoomId(), room.getQuizRoomName(),
 					room.getQuizRoomPassword(), room.getOwner(), room.getStatus(), memberList.size(), membersString);
 
-			if (!memberList.isEmpty()) {
-				quizRoomList.add(quizRoomBean);
-			}
+			quizRoomList.add(quizRoomBean);
 		}
 
 		int totalPage = rooms.getTotalPages();
