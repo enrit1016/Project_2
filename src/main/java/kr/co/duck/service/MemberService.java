@@ -70,7 +70,7 @@ public class MemberService {
 	
 	
 	// 유저 정보 수정
-	public MemberBean getModifyUserInfo(MemberBean modifyMemberBean) {
+	public MemberBean getModifyMemberInfo(MemberBean modifyMemberBean) {
 		
 		MemberBean tempModifyMemberBean = memberDao.getModifyMemberInfo(loginMemberBean.getMember_id());
 		modifyMemberBean.setMembername(tempModifyMemberBean.getMembername());
@@ -82,6 +82,24 @@ public class MemberService {
 		modifyMemberBean.setLogintype(tempModifyMemberBean.getLogintype());
 		
 		return modifyMemberBean;
+	}
+	
+	// 유저 정보 업데이트
+	public boolean modifyMemberInfo(MemberBean modifyMemberBean) {
+		modifyMemberBean.setMember_id(loginMemberBean.getMember_id());
+		memberDao.modifyMemberInfo(modifyMemberBean);
+		
+		return true;
+	}
+	
+	public void deleteMemberAccount(int member_id) {
+		memberDao.deleteMemberAccount(member_id);
+	}
+	
+	public boolean checkPassword(int member_id, String password) {
+		String savedPassword = memberDao.getMemberPassword(member_id);
+		
+		return savedPassword.equals(password);
 	}
 	
 }

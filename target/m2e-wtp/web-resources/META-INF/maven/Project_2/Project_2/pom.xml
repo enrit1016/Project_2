@@ -1,188 +1,234 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>Project_2</groupId>
-	<artifactId>Project_2</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<release>11</release>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.2.3</version>
-			</plugin>
-		</plugins>
-	</build>
-	<!-- 라이브러리 버전관리 -->
-	<properties>
-		<javax.servlet-version>4.0.1</javax.servlet-version>
-		<javax.servlet.jsp-version>2.3.3</javax.servlet.jsp-version>
-		<jstl-version>1.2</jstl-version>
-		<org.springframework-version>5.3.18</org.springframework-version>
-		<javax.annotation-version>1.3.2</javax.annotation-version>
-		<org.slf4j-version>2.0.7</org.slf4j-version>
-	</properties>
-	<!-- 라이브러리 세팅 -->
-	<dependencies>
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>Project_2</groupId>
+   <artifactId>Project_2</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+   <packaging>war</packaging>
 
-		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${javax.servlet-version}</version>
-			<scope>provided</scope>
-		</dependency>
+   <properties>
+      <java.version>11</java.version>
+      <spring-boot.version>2.7.5</spring-boot.version>
+   </properties>
 
-		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
-			<version>${javax.servlet.jsp-version}</version>
-			<scope>provided</scope>
-		</dependency>
+   <build>
+      <plugins>
+         <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+               <release>11</release>
+            </configuration>
+         </plugin>
+         <plugin>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.2.3</version>
+         </plugin>
+      </plugins>
+   </build>
 
-		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
-		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-			<version>${jstl-version}</version>
-		</dependency>
+   <dependencies>
+      <!-- Spring Boot Starter Web -->
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-web</artifactId>
+         <version>${spring-boot.version}</version>
+      </dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
+      <!-- Spring Boot Starter JSP -->
+      <dependency>
+         <groupId>org.apache.tomcat.embed</groupId>
+         <artifactId>tomcat-embed-jasper</artifactId>
+         <version>9.0.58</version>
+      </dependency>
 
+      <!-- JSTL -->
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>jstl</artifactId>
+         <version>1.2</version>
+      </dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
-		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>javax.annotation-api</artifactId>
-			<version>${javax.annotation-version}</version>
-		</dependency>
+      <!-- Spring Boot Starter Data JPA -->
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-data-jpa</artifactId>
+         <version>${spring-boot.version}</version>
+      </dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
-		<dependency>
-			<groupId>org.hibernate.validator</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>6.2.0.Final</version>
-		</dependency>
+      <!-- Oracle JDBC Driver -->
+      <dependency>
+         <groupId>com.oracle.database.jdbc</groupId>
+         <artifactId>ojdbc8</artifactId>
+         <version>19.8.0.0</version>
+      </dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>2.0.1.Final</version>
-		</dependency>
+      <!-- MyBatis Spring Boot Starter -->
+      <dependency>
+         <groupId>org.mybatis.spring.boot</groupId>
+         <artifactId>mybatis-spring-boot-starter</artifactId>
+         <version>2.2.2</version>
+      </dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>5.3.0</version>
-		</dependency>
+      <!-- Jackson Databind -->
+      <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-databind</artifactId>
+         <version>2.13.4</version>
+      </dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-dbcp2</artifactId>
-			<version>2.7.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.5.4</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>2.0.3</version>
-		</dependency>
+      <!-- Commons IO -->
+      <dependency>
+         <groupId>commons-io</groupId>
+         <artifactId>commons-io</artifactId>
+         <version>2.11.0</version>
+      </dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.10.2</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.11.0</version>
-		</dependency>
+      <!-- JSON Library -->
+      <dependency>
+         <groupId>org.json</groupId>
+         <artifactId>json</artifactId>
+         <version>20210307</version>
+      </dependency>
 
+      <!-- Jsoup -->
+      <dependency>
+         <groupId>org.jsoup</groupId>
+         <artifactId>jsoup</artifactId>
+         <version>1.14.3</version>
+      </dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit -->
-		<dependency>
-			<groupId>org.eclipse.jgit</groupId>
-			<artifactId>org.eclipse.jgit</artifactId>
-			<version>5.13.0.202109080827-r</version>
-		</dependency>
+      <!-- Gson -->
+      <dependency>
+         <groupId>com.google.code.gson</groupId>
+         <artifactId>gson</artifactId>
+         <version>2.10.1</version>
+      </dependency>
 
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20210307</version> <!-- 최신 버전으로 변경 가능 -->
-		</dependency>
+      <!-- JAXB API -->
+      <dependency>
+         <groupId>javax.xml.bind</groupId>
+         <artifactId>jaxb-api</artifactId>
+         <version>2.3.1</version>
+      </dependency>
 
-		<!-- Jsoup HTML 파싱 라이브러리 -->
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.14.3</version> <!-- 적절한 버전으로 대체 -->
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.10.1</version> <!-- 최신 버전 확인 후 업데이트 가능 -->
-		</dependency>
+      <!-- Spring Boot Starter WebSocket -->
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-websocket</artifactId>
+         <version>${spring-boot.version}</version>
+      </dependency>
 
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-		<!-- 현석 추가
-		-->
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>6.1.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>6.1.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-client -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-oauth2-client</artifactId>
-			<version>6.0.2</version>
-		</dependency>
-			<!--  https://mvnrepository.com/artifact/org.slf4j/slf4j-api  -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j-version}</version>
-		</dependency>
-	</dependencies>
+      <!-- Spring Boot Starter Security -->
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-security</artifactId>
+         <version>${spring-boot.version}</version>
+      </dependency>
 
+      <!-- Hibernate Validator -->
+      <dependency>
+         <groupId>org.hibernate.validator</groupId>
+         <artifactId>hibernate-validator</artifactId>
+         <version>6.2.5.Final</version>
+      </dependency>
+
+      <!-- Validation API -->
+      <dependency>
+         <groupId>javax.validation</groupId>
+         <artifactId>validation-api</artifactId>
+         <version>2.0.1.Final</version>
+      </dependency>
+
+      <!-- Apache Commons DBCP2 -->
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-dbcp2</artifactId>
+         <version>2.9.0</version>
+      </dependency>
+
+      <!-- 여기서부터 유찬씨 폼에서 가져온 의존성 -->
+
+      <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
+      <dependency>
+         <groupId>javax.servlet.jsp</groupId>
+         <artifactId>javax.servlet.jsp-api</artifactId>
+         <version>2.3.3</version>
+         <scope>provided</scope>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
+      <dependency>
+         <groupId>javax.annotation</groupId>
+         <artifactId>javax.annotation-api</artifactId>
+         <version>1.3.2</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-jdbc</artifactId>
+         <version>5.3.23</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit -->
+      <dependency>
+         <groupId>org.eclipse.jgit</groupId>
+         <artifactId>org.eclipse.jgit</artifactId>
+         <version>5.13.0.202109080827-r</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+      <dependency>
+         <groupId>org.springframework.security</groupId>
+         <artifactId>spring-security-config</artifactId>
+         <version>5.7.5</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-client -->
+      <dependency>
+         <groupId>org.springframework.security</groupId>
+         <artifactId>spring-security-oauth2-client</artifactId>
+         <version>5.7.5</version>
+      </dependency>
+
+      <!--  https://mvnrepository.com/artifact/org.slf4j/slf4j-api  -->
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-api</artifactId>
+         <version>2.0.9</version>
+      </dependency>
+
+      <dependency>
+         <groupId>com.google.api-client</groupId>
+         <artifactId>google-api-client</artifactId>
+         <version>1.32.1</version>
+      </dependency>
+
+      <dependency>
+         <groupId>com.google.apis</groupId>
+         <artifactId>google-api-services-youtube</artifactId>
+         <version>v3-rev222-1.25.0</version>
+      </dependency>
+
+      <dependency>
+         <groupId>com.google.oauth-client</groupId>
+         <artifactId>google-oauth-client-jetty</artifactId>
+         <version>1.32.1</version>
+      </dependency>    
+      
+      <!-- 여기서부터 해진씨꺼에서 가져옴 -->
+      
+      <!--메일전송-->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+			<version>2.6.3</version>
+		</dependency>
+      
+   </dependencies>
 </project>

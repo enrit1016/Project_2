@@ -6,7 +6,6 @@ import javax.validation.constraints.Size;
 
 public class MemberBean {
 	
-
 	private boolean memberNameExist;
 	private boolean memberLogin;	
 	
@@ -17,23 +16,23 @@ public class MemberBean {
 	
 	private int member_id; //로그인시 작성하는 id 아님 유저식별번호임
 	
-	@Size(min = 1, max = 10)
-	@Pattern(regexp = "[a-zA-Z0-9]*")
+	//@Size(min = 1, max = 10)
+	@Pattern(regexp = "[a-zA-Z0-9@.]*")
 	private String membername;	// = 아이디
 	
-	@Size(min = 2, max = 5)
+	//@Size(min = 2, max = 5)
 	@Pattern(regexp = "[가-힣a-zA-Z0-9]*")
 	private String nickname;	//닉네임
 	
-	@Size(min = 5, max = 20)
+	//@Size(min = 5, max = 20)
 	@Pattern(regexp = "[a-zA-Z0-9!@#$%^&*()_+=\\-`~]*")
 	private String password;	//유저 비밀번호
 	
-	@Size(min = 2, max = 20)
+	//@Size(min = 2, max = 20)
 	@Pattern(regexp = "[a-zA-Z0-9!@#$%^&*()_+=\\-`~]*")
 	private String password2;	//유저 비밀번호2 (임의 추가
 	
-	@Size(min = 1, max =3)
+	//@Size(min = 1, max =3)
 	@Pattern(regexp = "[0-9]*")
 	private String age;	//유저 나이
 	
@@ -47,6 +46,10 @@ public class MemberBean {
 	
 	private String role;
 	private String logintype;
+	
+	//1 = code, 2 = input code
+	private String authCode1;
+	private String authCode2;
 	
 	
 	
@@ -127,6 +130,18 @@ public class MemberBean {
 	}
 	public void setLogintype(String logintype) {
 		this.logintype = logintype;
+	}
+	public String getAuthCode1() {
+		return authCode1;
+	}
+	public void setAuthCode1(String authCode1) {
+		this.authCode1 = authCode1;
+	}
+	public String getAuthCode2() {
+		return authCode2;
+	}
+	public void setAuthCode2(String authCode2) {
+		this.authCode2 = authCode2;
 	}
 	
 	
