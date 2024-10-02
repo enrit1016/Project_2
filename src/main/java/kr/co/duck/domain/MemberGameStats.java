@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator; // 추가된 부분
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -69,6 +69,11 @@ public class MemberGameStats {
 
 	public void setMember(Member member) {
 		this.member = member;
+
+		// 양방향 연관 관계 설정
+		if (member != null && member.getMemberGameStats() != this) {
+			member.setMemberGameStats(this);
+		}
 	}
 
 	public int getWinNum() {
@@ -129,8 +134,9 @@ public class MemberGameStats {
 
 	@Override
 	public String toString() {
-		return "MemberGameStats{" + "statsId=" + statsId + ", member=" + member + ", winNum=" + winNum + ", loseNum="
-				+ loseNum + ", totalGameNum=" + totalGameNum + ", enterGameNum=" + enterGameNum + ", soloExitNum="
-				+ soloExitNum + ", makeRoomNum=" + makeRoomNum + ", playTime=" + playTime + '}';
+		return "MemberGameStats{" + "statsId=" + statsId + ", member="
+				+ (member != null ? member.getMemberId() : "null") + ", winNum=" + winNum + ", loseNum=" + loseNum
+				+ ", totalGameNum=" + totalGameNum + ", enterGameNum=" + enterGameNum + ", soloExitNum=" + soloExitNum
+				+ ", makeRoomNum=" + makeRoomNum + ", playTime=" + playTime + '}';
 	}
 }

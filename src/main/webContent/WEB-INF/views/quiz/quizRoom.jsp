@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var='root' value="${pageContext.request.contextPath }" />
+<c:set var='root' value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,16 +10,15 @@
 <script>
 	// root 및 방 정보를 JS로 전달
 	const root = '${root}';
-	const roomId = '${room.quizRoomId}';
-	const roomName = '${room.quizRoomName}';
+	const roomId = '${room.quizRoomId != null ? room.quizRoomId : 0}';
+	const roomName = '${room.quizRoomName != null ? room.quizRoomName : "새로운 퀴즈방"}';
 </script>
-<script src="${root}/js/quizRoom.js"></script>
 </head>
 <body>
 	<div class="quiz-room-container">
 		<!-- 퀴즈 방의 헤더 -->
 		<div class="header">
-			<h1>${room.quizRoomName}- 퀴즈 방</h1>
+			<h1>${room.quizRoomName}-퀴즈 방</h1>
 			<button id="start-quiz-btn">게임 시작</button>
 			<button id="go-lobby-btn">로비로 이동</button>
 		</div>
@@ -51,5 +50,8 @@
 			<button id="send-chat-btn">전송</button>
 		</div>
 	</div>
+
+	<!-- JavaScript 파일을 바디 끝에 로드하여 모든 요소가 렌더링된 후에 스크립트 실행 -->
+	<script src="${root}/js/quizRoom.js"></script>
 </body>
 </html>

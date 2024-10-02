@@ -11,6 +11,12 @@ public class CustomException extends RuntimeException { // 실행 예외 클래�
 		this.statusCode = statusCode;
 	}
 
+	
+	public CustomException(StatusCode statusCode, String message) {
+		super(message);
+		this.statusCode = statusCode;
+	}
+
 	public StatusCode getStatusCode() {
 		return statusCode;
 	}

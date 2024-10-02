@@ -21,7 +21,19 @@ public class MemberCommand {
 
 	// 멤버 객체 저장하기
 	public void saveMember(Member member) {
-		memberRepository.save(member);
+		// 기존 멤버 확인
+		Member existingMember = memberRepository.findById(member.getMemberId()).orElse(null);
+
+		if (existingMember == null) {
+			// 기존 멤버가 없으면 저장
+			memberRepository.save(member);
+		} else {
+			// 기존 멤버가 있으면 병합(업데이트)
+			existingMember.setNickname(member.getNickname());
+			existingMember.setEmail(member.getEmail());
+			// 필요한 필드를 업데이트하고 저장
+			memberRepository.save(existingMember);
+		}
 	}
 
 	// 멤버 객체로 데이터 삭제하기

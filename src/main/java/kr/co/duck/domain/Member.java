@@ -27,18 +27,21 @@ public class Member {
 	@Column(name = "NICKNAME")
 	private String nickname;
 
-	// 혹시 카카오로그인 사용하면 활성화
-	//@Column(name = "KAKAO_ID")
-	//private int kakaoId;
-	
 	// 게임 통계 정보와의 일대일 관계 설정
-	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private MemberGameStats memberGameStats;
 
+	// 기본 생성자 (JPA를 위해 필요)
 	public Member() {
-		
 	}
-	
+
+	// 임시 객체 생성을 위한 생성자
+	public Member(int memberId, String nickname, String email) {
+		this.memberId = memberId;
+		this.nickname = nickname;
+		this.email = email;
+	}
+
 	public int getMemberId() {
 		return memberId;
 	}
@@ -76,7 +79,17 @@ public class Member {
 	}
 
 	public void setMemberGameStats(MemberGameStats memberGameStats) {
+		// 기존 관계를 정리
+		if (this.memberGameStats != null) {
+			this.memberGameStats.setMember(null);
+		}
+
 		this.memberGameStats = memberGameStats;
+
+		// 양방향 관계 설정
+		if (memberGameStats != null) {
+			memberGameStats.setMember(this);
+		}
 	}
 
 	@Override
@@ -84,7 +97,4 @@ public class Member {
 		return "Member [memberId=" + memberId + ", email=" + email + ", password=" + password + ", nickname=" + nickname
 				+ ", memberGameStats=" + memberGameStats + "]";
 	}
-
-
-
 }
