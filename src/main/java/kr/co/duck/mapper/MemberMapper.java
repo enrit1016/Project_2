@@ -1,7 +1,9 @@
 package kr.co.duck.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import kr.co.duck.beans.MemberBean;
 
@@ -30,5 +32,15 @@ public interface MemberMapper {
 	
 	@Select("select membername, age, email, join_date, real_name, nickname, logintype from member where member_id = #{member_id}")
 	MemberBean getModifyMemberInfo(int member_id);
+	
+	@Update("update member set age = #{age}, email = #{email}, real_name = #{real_name}, nickname = #{nickname} where member_id = #{member_id}")
+	void modifyMemberInfo(MemberBean modifyMemberBean);
+	
+	@Delete("delete from member where member_id = #{member_id}")
+	void deleteMemberAccount(int member_id);
+	
+	@Select("select password from member where member_id = #{member_id}")
+	String getMemberPassword(int member_id);
+	
 
 }

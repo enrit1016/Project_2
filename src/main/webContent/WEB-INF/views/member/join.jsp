@@ -77,7 +77,7 @@
     function calculatePasswordGrade(password) {
         var grade = "weak";
 
-        if (password.length < 5) {
+        if (password.length < 1) {
             return grade;
         }
 
