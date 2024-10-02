@@ -32,26 +32,23 @@
 	
 		<h1>커뮤니티</h1>
 		<div>
-			<button class="c_btn">전체</button>
-			<button class="c_btn">자유게시판</button>
-			<button class="c_btn">소식/정보</button>
-			<button class="c_btn">음악 추천</button>
+			<button class="c_btn" ><a href="${root }board/main">전체</a></button>
+			<button class="c_btn" ><a href="${root }board/main_sort?board_id=1">자유게시판</a></button>
+			<button class="c_btn" ><a href="${root }board/main_sort?board_id=2">소식/정보</a></button>
+			<button class="c_btn" ><a href="${root }board/main_sort?board_id=3">음악 추천</a></button>
 			<p></p>
 		</div>
+		<form:form action="${root}board/write_reply_pro" method="post"
+				modelAttribute="writeReplyBean"></form:form>
 		<div class="on-table">
-			<input placeholder="search">
-			<%-- <form:input path="title"/> --%>
-			<span class="right-align"> <a
-				href="${root }board/write"
-				class="write-btn">글쓰기</a>
-			</span>
+			<input id="searchInput" placeholder="search" onkeydown="if(event.key === 'Enter') searchPosts()">
+    		<span class="right-align"> <a href="${root }board/write" class="write-btn">글쓰기</a> </span>
 		</div>
 		
 			<div>
 				<table>
 					<thead>
 						<tr>
-							<th>글 번호</th>
 							<th>카테고리</th>
 							<th>제목</th>
 							<th>글쓴이</th>
@@ -60,15 +57,15 @@
 						</tr>
 					</thead>
 					<tbody align="center">
-						<c:forEach var='obj' items="${contentList }">
+						<c:forEach var='obj' items="${contentList}">
 							<tr>
-								<td>${obj.content_id }</td>
 								<td>${obj.board_name }</td>
-								<td><a href="${root }board/read?content_id=${obj.content_id }">${obj.content_title }</a></td>
+								<td><a href="${root }board/read?boardpost_id=${obj.boardpost_id}">${obj.content_title}</a></td>
 								<td>${obj.membername }</td>
-								<td>${obj.write_date }</td>
+								<td>${obj.writedate }</td>
 								<td>${obj.like_count }</td>
-							</tr>
+								<td style="display: none;">${obj.content_text }</td>							
+							</tr>						
 						</c:forEach>
 					</tbody>
 				</table>
@@ -126,10 +123,12 @@
 	<div class="showBest">
 		<h3 style="margin-right: 120px;">BEST</h3>
 		<div class="bestContent">
+		<c:forEach var='obj' items="${bestList}">
 			<div>
-			<span>제목2123123</span>
-			<span style="margin-left: auto;">♡9</span>
+			<span style="margin: 0 20px 0 0;">${obj.content_title}</span>
+			<span style="margin: 0;">♡${obj.like_count }</span>
 			</div>
+		</c:forEach>
 		</div>
 	</div>
 	<div class="fixed-section">
@@ -151,5 +150,41 @@
 	<footer>
 		<!-- ========== -->
 	</footer>
+
+<script>
+    function searchPosts() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase(); // 소문자로 변환하여 대소문자 구분 없이 검색
+        const table = document.querySelector('table tbody');
+        const rows = table.getElementsByTagName('tr'); // 모든 행 가져오기
+
+        for (let i = 0; i < rows.length; i++) {
+            const titleCell = rows[i].cells[1]; // 제목이 있는 셀
+            const contentCell = rows[i].cells[5]; // 내용이 있는 셀
+            let showRow = false; // 해당 행을 표시할지 여부
+
+            if (titleCell) {
+                const titleText = titleCell.textContent || titleCell.innerText; // 셀의 텍스트 가져오기
+                // 제목에 입력된 문자열이 포함되는지 확인
+                if (titleText.toLowerCase().indexOf(filter) > -1) {
+                    showRow = true; // 제목이 일치하는 경우
+                }
+            }
+
+            if (contentCell) {
+                const contentText = contentCell.textContent || contentCell.innerText; // 내용 셀의 텍스트 가져오기
+                // 내용에 입력된 문자열이 포함되는지 확인
+                if (contentText.toLowerCase().indexOf(filter) > -1) {
+                    showRow = true; // 내용이 일치하는 경우
+                }
+            }
+
+            // 일치 여부에 따라 행 표시 또는 숨김
+            rows[i].style.display = showRow ? "" : "none";
+        }
+    }
+
+</script>
+
 </body>
 </html>

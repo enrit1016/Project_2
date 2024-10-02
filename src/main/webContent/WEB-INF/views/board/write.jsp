@@ -10,9 +10,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> 
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link href="//bootswatch.com/3/slate/bootstrap.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	
 <title>Insert title here</title>
 <style>
 .post-form {
@@ -21,7 +23,6 @@
     overflow-y: auto;
     resize: none;
 }
-
 </style>
 </head>
 <body>
@@ -48,17 +49,12 @@
 			</div>
 			
 			<div class="post-form">
-        		<textarea name="content_text" id="summernote">
-        		</textarea>
+        		<textarea name="content_text" id="summernote"></textarea>
     		</div>
-			
-			<div>
-				<form:input type='file' path="upload_file" class="form-control" accept="image/*"/>
-			</div>
 			
 			<span style="float: right; margin: 30px 0">
 				<form:button type="reset" class="write-btn"><a href="${root }board/main">취소</a></form:button>
-				<form:button class="write-btn">작성</form:button>
+				<form:button class="write-btn" id="saveButton">작성</form:button>
 			</span>
 		</form:form>
 		</div>
@@ -70,25 +66,56 @@
                 lang: 'ko-KR',
                 toolbar: [
                     ['fontsize', ['fontsize']],
-                    ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
                     ['color', ['color']],
                     ['table', ['table']],
                     ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']]
+                    ['height', ['height']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
                 ],
                 fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋움체', '바탕체'],
                 fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72', '96'],
                 focus: true,
-                callbacks: {
-                    onImageUpload: function(files) {
-                        for (var i = 0; i < files.length; i++) {
-                            imageUploader(files[i], this);
-                        }
-                    }
-                }
+                
+            });
+            
+            $('#saveButton').on('click', function(event) {
+                event.preventDefault(); // 기본 폼 제출 방지
+
+             	// 중복 제출 방지
+                $(this).prop('disabled', true);
+                
+                // Summernote 에디터의 HTML 코드 가져오기
+                var htmlContent = $('#summernote').summernote('code');
+
+                // textarea에 HTML 내용 설정
+                $('textarea[name="content_text"]').val(htmlContent);
+
+                // 폼 제출
+                $(this).closest('form').submit();
             });
         });
 
+        function imageUploader(file, el) {
+        	var formData = new FormData();
+        	formData.append('file', file);
+          
+        	$.ajax({                                                              
+        		data : formData,
+        		type : "POST",
+        		url : '/post/image-upload',  
+        		contentType : false,
+        		processData : false,
+        		enctype : 'multipart/form-data',                                  
+        		success : function(data) {
+        			$(el).summernote('insertImage', "${pageContext.request.contextPath}/upload/"+data, function($image) {
+        				$image.css('width', "100%");
+        			});
+        			console.log(data);
+        		}
+        	});
+        }
     </script>
 </body>
 </html>
