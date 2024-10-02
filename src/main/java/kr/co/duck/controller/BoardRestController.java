@@ -20,32 +20,30 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BoardRestController {
 
-	/*
-	 * @Autowired private final WebApplicationContext context;
-	 * 
-	 * @PostMapping("/image-upload") public ResponseEntity<?>
-	 * imageUpload(@RequestParam("file") MultipartFile file)throws
-	 * IllegalStateException, IOException{
-	 * 
-	 * try { String uploadDirectory =
-	 * context.getServletContext().getRealPath("/resources/upload");
-	 * 
-	 * String originalFileName = file.getOriginalFilename();
-	 * 
-	 * String fileExtension =
-	 * originalFileName.substring(originalFileName.lastIndexOf("."));
-	 * 
-	 * String uuidFileName = UUID.randomUUID().toString() + fileExtension;
-	 * 
-	 * file.transferTo(new File(uploadDirectory, uuidFileName));
-	 * 
-	 * System.out.
-	 * println("************************ 업로드 컨트롤러 실행 ************************");
-	 * System.out.println(uploadDirectory);
-	 * 
-	 * return ResponseEntity.ok(uuidFileName); } catch (Exception e) { return
-	 * ResponseEntity.badRequest().body("이미지 업로드 실패"); }
-	 * 
-	 * }
-	 */
+	@Autowired
+	private final WebApplicationContext context;
+
+	@PostMapping("/image-upload")
+	public ResponseEntity<?> imageUpload(@RequestParam("file") MultipartFile file)throws IllegalStateException, IOException{
+		
+		try {
+			String uploadDirectory = context.getServletContext().getRealPath("/resources/upload"); 
+			
+			String originalFileName = file.getOriginalFilename();
+			
+			String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
+			
+			String uuidFileName = UUID.randomUUID().toString() + fileExtension;
+			
+			file.transferTo(new File(uploadDirectory, uuidFileName));
+		
+			System.out.println("************************ 업로드 컨트롤러 실행 ************************");
+			System.out.println(uploadDirectory);
+			
+			return ResponseEntity.ok(uuidFileName);
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("이미지 업로드 실패");
+		}
+		
+	}
 }
