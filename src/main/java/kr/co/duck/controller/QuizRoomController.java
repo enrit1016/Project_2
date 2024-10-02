@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,17 +64,14 @@ public class QuizRoomController {
 
 	// 퀴즈방 상세 조회 API
 	@GetMapping("/{roomId}")
-	public ResponseEntity<Map<String, Object>> getQuizRoom(@PathVariable int roomId) {
-		Map<String, Object> response = new HashMap<>();
+	public String getQuizRoom(@PathVariable int roomId, Model model) {
 		try {
 			QuizRoomBean quizRoom = quizRoomService.findRoomById(roomId);
-			response.put("success", true);
-			response.put("room", quizRoom);
-			return ResponseEntity.ok(response);
+			model.addAttribute("room", quizRoom);
+			return "quizRoom"; // quizRoom.jsp로 이동
 		} catch (Exception e) {
-			response.put("success", false);
-			response.put("message", "방 조회 중 오류가 발생했습니다: " + e.getMessage());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+			model.addAttribute("errorMessage", "방 조회 중 오류가 발생했습니다: " + e.getMessage());
+			return "errorPage"; // 에러가 발생하면 에러 페이지로 이동
 		}
 	}
 
@@ -96,32 +94,42 @@ public class QuizRoomController {
 		}
 	}
 
-	// 방 참여 API
 	@PostMapping("/join")
-	public ResponseEntity<Map<String, Object>> joinRoom(@RequestParam int roomId,
-			@AuthenticationPrincipal UserDetailsImpl userDetails) {
-		Map<String, Object> response = new HashMap<>();
-		try {
-			// userDetails가 null인 경우 처리
-			if (userDetails == null) {
-				throw new CustomException(StatusCode.INVALID_TOKEN, "로그인 후 사용해 주세요.");
-			}
+	public ResponseEntity<Map<String, Object>> joinRoom(@RequestBody Map<String, Object> requestData, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+	    Map<String, Object> response = new HashMap<>();
+	    try {
+	        // 디버깅: userDetails가 null인지 확인
+	        if (userDetails == null) {
+	            System.out.println("userDetails is null. The user is not authenticated.");
+	            throw new CustomException(StatusCode.INVALID_TOKEN, "로그인 후 사용해 주세요.");
+	        }
 
-			quizRoomService.enterQuizRoom(roomId, userDetails); // UserDetailsImpl 전달
+	        // 전달된 roomId 및 roomPassword 확인
+	        int roomId = Integer.parseInt(requestData.get("roomId").toString());
+	        String roomPassword = (String) requestData.get("roomPassword");
 
-			// 참여에 성공한 경우 roomId를 응답에 포함
-			response.put("success", true);
-			response.put("roomId", roomId);
-			return ResponseEntity.ok(response);
-		} catch (CustomException e) {
-			response.put("success", false);
-			response.put("message", "방 참여에 실패했습니다: " + e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-		} catch (Exception e) {
-			response.put("success", false);
-			response.put("message", "서버 오류가 발생했습니다: " + e.getMessage());
-			e.printStackTrace(); // 서버 로그에 예외 출력
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+	        System.out.println("Attempting to join room with ID: " + roomId);
+	        Member member = userDetails.getMember();
+	        System.out.println("User attempting to join: " + member.getNickname());
+
+	        // 방 참여 시도
+	        quizRoomService.enterQuizRoom(roomId, member, roomPassword);
+
+	        response.put("success", true);
+	        response.put("roomId", roomId);
+	        return ResponseEntity.ok(response);
+	    } catch (CustomException e) {
+	        System.out.println("CustomException occurred: " + e.getMessage());
+	        e.printStackTrace();
+	        response.put("success", false);
+	        response.put("message", "방 참여에 실패했습니다: " + e.getMessage());
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+	    } catch (Exception e) {
+	        System.out.println("Exception occurred: " + e.getMessage());
+	        e.printStackTrace();
+	        response.put("success", false);
+	        response.put("message", "서버 오류가 발생했습니다: " + e.getMessage());
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		}
 	}
 

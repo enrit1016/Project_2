@@ -26,9 +26,12 @@
 					<li>
 						<div class="room-info">
 							<span class="room-name"><c:out
-									value="${room.quizRoomName}" /></span> <span class="room-users"><c:out
-									value="${room.memberCount}" />명</span>
-							<button class="join-room-btn" data-room-id="${room.quizRoomId}">참여</button>
+									value="${room.quizRoomName}" /></span> <span class="room-users">
+								<c:out value="${room.memberCount}" /> / 10명 <!-- 최대 인원 표시 -->
+							</span>
+							<!-- 방에 비밀번호가 있는지 확인하여 data-requires-password 속성 설정 -->
+							<button class="join-room-btn" data-room-id="${room.quizRoomId}"
+								data-requires-password="${room.quizRoomPassword != null && !room.quizRoomPassword.isEmpty()}">참여</button>
 						</div>
 					</li>
 				</c:forEach>

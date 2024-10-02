@@ -47,22 +47,36 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.querySelectorAll('.join-room-btn').forEach(button => {
 		button.addEventListener('click', () => {
 			const roomId = button.getAttribute('data-room-id');
+			const requiresPassword = button.getAttribute('data-requires-password') === 'true';
+
 			if (!roomId) {
 				alert('방 ID를 찾을 수 없습니다.');
 				return;
 			}
+
+			// 비밀번호가 필요한 방일 경우, 비밀번호 입력 요청
+			let roomPassword = '';
+			if (requiresPassword) {
+				roomPassword = prompt("방의 비밀번호를 입력하세요:");
+				if (roomPassword === null) {
+					alert('방 참여가 취소되었습니다.');
+					return;
+				}
+			}
+
 			// 방 참여 요청
-			joinRoom(roomId);
+			joinRoom(roomId, roomPassword);
 		});
 	});
 });
 
 // 방 참여 함수
-function joinRoom(roomId) {
+function joinRoom(roomId, roomPassword = '') {
 	console.log(`Joining room with ID: ${roomId}`); // 디버그용 로그
-	fetch(`${root}/quiz/rooms/join?roomId=${roomId}`, {
+	fetch(`${root}/quiz/rooms/join`, {
 		method: 'POST',
-		headers: { 'Content-Type': 'application/json' }
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ roomId: roomId, roomPassword: roomPassword }) // 방 참여 시 roomId와 비밀번호 전송
 	})
 		.then(response => {
 			if (!response.ok) {
@@ -83,4 +97,3 @@ function joinRoom(roomId) {
 			alert('방 참여 중 오류가 발생했습니다: ' + error.message);
 		});
 }
-

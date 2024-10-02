@@ -5,20 +5,23 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>퀴즈 방</title>
+<meta charset="UTF-8">
+<title>${room.quizRoomName}- 퀴즈 방</title>
 <link rel="stylesheet" href="${root}/css/quizRoom.css">
 <script>
-	// root 및 방 정보를 JS로 전달
-	const root = '${root}';
-	const roomId = '${room.quizRoomId != null ? room.quizRoomId : 0}';
-	const roomName = '${room.quizRoomName != null ? room.quizRoomName : "새로운 퀴즈방"}';
-</script>
+        // root 및 방 정보를 JS로 전달
+        const root = '${root}';
+        const roomId = '${room.quizRoomId != null ? room.quizRoomId : 0}';
+        const roomName = '${room.quizRoomName != null ? room.quizRoomName : "새로운 퀴즈방"}';
+        const memberCount = '${room.memberCount != null ? room.memberCount : 0}';
+        const maxCapacity = 10; // 최대 인원 설정
+    </script>
 </head>
 <body>
 	<div class="quiz-room-container">
 		<!-- 퀴즈 방의 헤더 -->
 		<div class="header">
-			<h1>${room.quizRoomName}-퀴즈 방</h1>
+			<h1>${room.quizRoomName}- 퀴즈 방 (${memberCount}/${maxCapacity})</h1>
 			<button id="start-quiz-btn">게임 시작</button>
 			<button id="go-lobby-btn">로비로 이동</button>
 		</div>
@@ -53,5 +56,18 @@
 
 	<!-- JavaScript 파일을 바디 끝에 로드하여 모든 요소가 렌더링된 후에 스크립트 실행 -->
 	<script src="${root}/js/quizRoom.js"></script>
+	<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 게임 시작 버튼 클릭 이벤트
+            document.getElementById('start-quiz-btn').addEventListener('click', () => {
+                alert('게임을 시작합니다!'); // 실제 게임 시작 로직을 여기에 추가하세요.
+            });
+
+            // 로비로 이동 버튼 클릭 이벤트
+            document.getElementById('go-lobby-btn').addEventListener('click', () => {
+                window.location.href = `${root}/quiz/lobby`; // 로비 페이지로 이동
+            });
+        });
+    </script>
 </body>
 </html>

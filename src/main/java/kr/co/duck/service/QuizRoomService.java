@@ -168,11 +168,14 @@ public class QuizRoomService {
 
 	// 퀴즈룸 입장
 	@Transactional
-	public Map<String, String> enterQuizRoom(int roomId, UserDetailsImpl userDetails) {
-		Member member = userDetails.getMember(); // UserDetailsImpl에서 Member 추출
-		enterVerify(roomId, member); // 그대로 유지
-
+	public Map<String, String> enterQuizRoom(int roomId, Member member, String roomPassword) {
 		QuizRoom enterQuizRoom = quizQuery.findQuizRoomByRoomIdLock(roomId);
+
+		// 비밀번호 검증
+		if (!enterQuizRoom.getQuizRoomPassword().equals(roomPassword)) {
+			throw new CustomException(StatusCode.BAD_REQUEST, "비밀번호가 올바르지 않습니다.");
+		}
+
 		ensureMemberGameStats(member);
 
 		// 게임 통계 업데이트
