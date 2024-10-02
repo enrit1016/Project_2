@@ -40,4 +40,18 @@ public class MemberDao {
 		return memberMapper.getModifyMemberInfo(member_id);
 	}
 	
+
+	public void modifyMemberInfo(MemberBean modifyMemberBean) {
+		memberMapper.modifyMemberInfo(modifyMemberBean);
+	}
+	
+	public void deleteMemberAccount(int member_id) {
+		memberMapper.deleteMemberAccount(member_id);
+	}
+	
+	public String getMemberPassword(int member_id) {
+		return memberMapper.getMemberPassword(member_id);
+	}
+	
+
 }

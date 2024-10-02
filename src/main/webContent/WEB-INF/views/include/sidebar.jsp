@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<c:set var='root' value="${pageContext.request.contextPath}/" />
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,5 +75,20 @@
 		}
 	}
 </script>
+
+</head>
+<body>
+	<div class="sidebar-trigger" 
+		onmouseenter="toggleSidebar(true)"
+		onmouseleave="toggleSidebar(false)">
+	</div>
+	
+	<div class="sidebar">
+		<div class="close_sidebar" onclick="toggleSidebar(false)">◀</div>
+		<div>홈</div>
+		<div>커뮤니티</div>
+		<div>퀴즈</div>
+	</div>
+
 </body>
 </html>
