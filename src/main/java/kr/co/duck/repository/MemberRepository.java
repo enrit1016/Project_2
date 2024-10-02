@@ -10,11 +10,11 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 
 	Optional<Member> findByNickname(String nickname); // nickname으로 회원 조회
 
-	Optional<Member> findByKakaoId(int kakaoId); // 카카오Id로 회원 조회
+	//Optional<Member> findByKakaoId(int kakaoId); // 카카오Id로 회원 조회
 
 	boolean existsByEmail(String email); // 같은 email 존재여부 확인
 
 	boolean existsByNickname(String nickname); // 같은 nickname 존재여부 확인
 
-	boolean existsByKakaoId(int kakaoId); // 같은 kakaoId 존재여부 확인
+	//boolean existsByKakaoId(int kakaoId); // 같은 kakaoId 존재여부 확인
 }

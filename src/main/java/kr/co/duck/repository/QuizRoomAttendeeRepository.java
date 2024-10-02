@@ -16,9 +16,9 @@ public interface QuizRoomAttendeeRepository extends JpaRepository<QuizRoomAttend
 
 	Optional<QuizRoomAttendee> findByMember(Member member); // 멤버 객체로 참가자 정보 조회
 
-	Optional<QuizRoomAttendee> findByMember_Id(Long memberId); // 멤버 ID로 참가자 정보 조회
+	Optional<QuizRoomAttendee> findByMember_MemberId(int memberId); // 멤버 ID로 참가자 정보 조회
 
-	List<QuizRoomAttendee> findByQuizRoom_QuizRoomId(Long quizRoomId); // 퀴즈방 ID로 안에 있는 멤버 전부 조회
+	List<QuizRoomAttendee> findByQuizRoom_QuizRoomId(int quizRoomId); // 퀴즈방 ID로 안에 있는 멤버 전부 조회
 
 	@Transactional
 	void deleteAllByMember(Member member); // 멤버 객체로 삭제

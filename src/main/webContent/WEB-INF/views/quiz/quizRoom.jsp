@@ -7,6 +7,12 @@
 <head>
 <title>퀴즈 방</title>
 <link rel="stylesheet" href="${root}/css/quizRoom.css">
+<script>
+	// root 및 방 정보를 JS로 전달
+	const root = '${root}';
+	const roomId = '${room.quizRoomId}';
+	const roomName = '${room.quizRoomName}';
+</script>
 <script src="${root}/js/quizRoom.js"></script>
 </head>
 <body>

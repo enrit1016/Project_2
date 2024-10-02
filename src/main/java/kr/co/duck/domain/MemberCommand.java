@@ -1,7 +1,6 @@
 package kr.co.duck.domain;
 
 import org.springframework.stereotype.Service;
-
 import kr.co.duck.repository.MemberRepository;
 import kr.co.duck.repository.QuizRoomAttendeeRepository;
 import kr.co.duck.repository.RewardRepository;
@@ -44,5 +43,10 @@ public class MemberCommand {
 
 		// 회원 삭제
 		deleteMember(member);
+	}
+
+	// 특정 ID로 멤버 찾기
+	public Member findMemberById(int memberId) {
+		return memberRepository.findById(memberId).orElse(null);
 	}
 }

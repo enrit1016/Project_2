@@ -43,9 +43,9 @@ public class MemberQuery {
 	}
 
 	// 카카오 아이디로 Member 객체 찾아오기
-	public Member findMemberByKakaoId(int kakaoId) {
-		return memberRepository.findByKakaoId(kakaoId).orElseThrow(() -> new CustomException(NOT_FOUND_MEMBER));
-	}
+	//public Member findMemberByKakaoId(int kakaoId) {
+	//	return memberRepository.findByKakaoId(kakaoId).orElseThrow(() -> new CustomException(NOT_FOUND_MEMBER));
+	//}
 
 	// 멤버 ID로 Member 객체 찾아오기
 	public Member findMemberById(int memberId) {
@@ -53,7 +53,7 @@ public class MemberQuery {
 	}
 
 	// 카카오 아이디로 존재여부 확인
-	public boolean existsMemberByKakaoId(int kakaoId) {
-		return memberRepository.existsByKakaoId(kakaoId);
-	}
+	//public boolean existsMemberByKakaoId(int kakaoId) {
+		//return memberRepository.existsByKakaoId(kakaoId);
+	//}
 }

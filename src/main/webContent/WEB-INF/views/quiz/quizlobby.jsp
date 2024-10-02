@@ -10,9 +10,8 @@
 <link rel="stylesheet" href="${root}/css/quizlobby.css">
 <script>
 	// root 변수를 JS로 전달
-	const root = '${root}';
+	window.root = '${root}';
 </script>
-<script src="${root}/js/quizlobby.js"></script>
 </head>
 <body>
 	<div class="lobby-container">
@@ -26,14 +25,16 @@
 				<c:forEach var="room" items="${rooms}">
 					<li>
 						<div class="room-info">
-							<span class="room-name">${room.quizRoomName}</span> <span
-								class="room-users">${room.memberCount}명</span>
-							<button onclick="joinRoom('${room.quizRoomId}')">참여</button>
+							<span class="room-name"><c:out
+									value="${room.quizRoomName}" /></span> <span class="room-users"><c:out
+									value="${room.memberCount}" />명</span>
+							<button class="join-room-btn" data-room-id="${room.quizRoomId}">참여</button>
 						</div>
 					</li>
 				</c:forEach>
 			</ul>
 		</div>
 	</div>
+	<script src="${root}/js/quizlobby.js"></script>
 </body>
 </html>

@@ -8,9 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 // 기능: 퀴즈방과 유저를 연결하는 중간 Entity
 @Entity
+@Table(name = "quiz_room_attendee")
 public class QuizRoomAttendee {
 
 	@Id
