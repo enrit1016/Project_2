@@ -13,15 +13,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
    <!-- SweetAlert 다크 테마 및 스크립트 추가 -->
    <link
            href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"
@@ -62,6 +53,7 @@
          border: none; /* 테두리 제거 */
          border-radius: 5px; /* 둥근 모서리 */
          cursor: pointer; /* 클릭 가능한 버튼 스타일 */
+         font-size: larger;
       }
 
       .btn-pay:hover, .mocean-modal-close:hover {
@@ -72,7 +64,7 @@
          display: flex;
          justify-content: center;
          gap: 20px;
-         margin-top: 30px;
+         margin-top: 10px;
       }
 
       .mocean-modal-button {
@@ -86,6 +78,7 @@
          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
          transition: transform 0.2s ease-in-out;
          width: 300px;
+
       }
 
       .mocean-modal-button:hover {

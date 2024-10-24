@@ -3,7 +3,7 @@ html {
 }
 
 html, body {
-	margin: 30px; /*페이지 전체에 20px의 여백 추가*/
+	margin: 5px; /*페이지 전체에 20px의 여백 추가*/
 	/* border: 50px; */
 	/* padding: 40px; */
 	height: 120%;
