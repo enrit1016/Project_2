@@ -11,6 +11,8 @@
 
 
 
+
+
    <!-- SweetAlert 다크 테마 및 스크립트 추가 -->
    <link
            href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"
@@ -20,10 +22,14 @@
 
 
 
+
+
+
+
+
    <title>결제 옵션</title>
    <link rel="stylesheet" href="${root}css/popup.css">
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 
 
    <!-- 폰트 통일 적용 -->
@@ -58,7 +64,7 @@
          display: flex;
          justify-content: center;
          gap: 20px;
-         margin-top: 10px;
+         margin-top: 50px;
       }
 
       .mocean-modal-button {
@@ -214,12 +220,40 @@
       <div class="mocean-modal-content">
          <h3>월간결제</h3>
          <p>9,900원/월</p>
-         <button type="button" id="mocean-modal-close-mainBtn" onClick="location.href='${root}main'">메인으로</button>
-        
+         <button type="button" class="mocean-modal-close mainBtn" onClick="location.href='${root}main'">메인으로</button>
+         <button class="btn-pay">결제하기</button>
          <button class="mocean-modal-close">닫기</button>
       </div>
    </div>
 </div>
+
+
+
+<!-- .mocean-modal-wrap {
+ position: fixed; /* 모달을 화면에 고정시킴 */
+ top: 50%; /* 화면의 세로 중심 */
+ left: 50%; /* 화면의 가로 중심 */
+ transform: translate(-50%, -50%); /* 가로, 세로 중심으로부터 절반만큼 이동하여 완전히 중앙 배치 */
+ z-index: 1000; /* 다른 요소들 위에 뜨도록 z-index 설정 */
+ display: flex; /* 모달을 중앙에 띄우기 위한 flexbox 설정 */
+ justify-content: center; /* 수평으로 중앙 정렬 */
+ align-items: center; /* 수직으로 중앙 정렬 */
+ visibility: hidden; /* 기본적으로 모달이 보이지 않도록 설정 */
+ background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검정 배경 */
+ width: 100%; /* 모달이 차지하는 가로 너비를 100%로 설정 */
+ height: 100%; /* 모달이 차지하는 세로 높이를 100%로 설정 */
+}
+
+.mocean-show.mocean-modal-wrap {
+ visibility: visible; /* 모달이 표시될 때 보이도록 설정 */
+}
+
+.mocean-modal {
+ background-color: #1c1c1c; /* 모달의 배경색 */
+ padding: 30px; /* 모달 내부 여백 */
+ border-radius: 10px; /* 모서리를 둥글게 */
+ box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+} -->
 
 
 
@@ -237,7 +271,7 @@
          <h3>연간결제</h3>
          <p>99,900원/년</p>
          <button type="button" class="mocean-modal-close mainBtn" onClick="location.href='${root}main'">메인으로</button>
-         
+         <button class="btn-pay annual">결제하기</button>
          <button class="mocean-modal-close">닫기</button>
       </div>
    </div>
@@ -288,7 +322,7 @@
             data: JSON.stringify(data),
             contentType: 'application/json',
             success: function(response) {
-               window.open(response.next_redirect_pc_url, '카카오페이', 'width=500px, height=950px, left=670px, top=400px');
+               window.open(response.next_redirect_pc_url, '카카오페이', 'width=500px, height=950px, left=500px, top=400px');
 
             }
          });
