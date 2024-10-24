@@ -11,8 +11,6 @@
 
 
 
-
-
    <!-- SweetAlert 다크 테마 및 스크립트 추가 -->
    <link
            href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"
@@ -22,14 +20,10 @@
 
 
 
-
-
-
-
-
    <title>결제 옵션</title>
    <link rel="stylesheet" href="${root}css/popup.css">
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 
    <!-- 폰트 통일 적용 -->
