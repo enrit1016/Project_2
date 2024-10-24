@@ -83,10 +83,7 @@ body {
     justify-content: center;
     flex-wrap: nonwrap; /* flex-wrap을 없애서 버튼이 가로로만 나열되도록 설정 */
 }
-
-.mocean-modal-button {
-    background-color: #1c1c1c;
-    border-radi.mocean-modal-content {
+.mocean-modal-content {
     display: flex;
     flex-direction: column; /* 수직 정렬 */
     align-items: center; /* 모든 요소를 중앙으로 정렬 */
@@ -187,7 +184,9 @@ button.mocean-modal-close:hover {
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* 모달 그림자 추가 */
     padding: 20px; /* 모달 내부 패딩 */
 }
-    us: 10px;
+.mocean-modal-button {
+    background-color: #1c1c1c;
+    border-radius: 10px;
     padding: 70px;
     width: 500px; /* 버튼 너비 */
     height: 650px;
