@@ -285,7 +285,7 @@ c-scrollbar{
 
 				<div class="card-container">
 					<div class="card-title">
-						<img src="${root}/img/미래도시,비.jpg" alt="사진" />
+						<img src="${root}/img/모닥불.jpg" alt="사진" />
 					</div>
 					<div class='card-con'>
 						<h3>더 풍부하게 음악을 들어보세요.</h3>
@@ -320,7 +320,7 @@ c-scrollbar{
 
 				<div class="card-container">
 					<div class="card-title">
-						<img src="${root}/img/미래도시,비.jpg" alt="사진" />
+						<img src="${root}/img/게임캡쳐.png" alt="사진" />
 					</div>
 					<div class='card-con'>
 						<h3>DuckMusic 퀴즈</h3>

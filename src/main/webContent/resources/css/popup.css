@@ -1,79 +1,79 @@
 html {
-	font: normal 100%/1.5 "Roboto Slab", serif;
+   font: normal 100%/1.5 "Roboto Slab", serif;
 }
 
 html, body {
-	margin: 5px; /*페이지 전체에 20px의 여백 추가*/
-	/* border: 50px; */
-	/* padding: 40px; */
-	height: 120%;
+   margin: 5px; /*페이지 전체에 20px의 여백 추가*/
+   /* border: 50px; */
+   /* padding: 40px; */
+   height: 120%;
 }
 
 body {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	/* background-image 부분을 주석 처리 */
-	/* background-image: */
-	/* 	url("https://images.unsplash.com/photo-1445251836269-d158eaa028a6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1951&q=80"); */
-	/* 주석처리 이유: 백그라운드 이미지를 사용하지 않고, 대신 백그라운드 컬러를 블랙으로 설정하기 위함 */
-	/* 배경색을 검정색(블랙)으로 변경 */
-	background-color: black; /* 배경을 검정색으로 설정함 */
-	/* 배경색이 어두워서 텍스트 가독성을 위해 백그라운드 이미지 대신 검정색 배경을 사용합니다 */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   /* background-image 부분을 주석 처리 */
+   /* background-image: */
+   /*    url("https://images.unsplash.com/photo-1445251836269-d158eaa028a6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1951&q=80"); */
+   /* 주석처리 이유: 백그라운드 이미지를 사용하지 않고, 대신 백그라운드 컬러를 블랙으로 설정하기 위함 */
+   /* 배경색을 검정색(블랙)으로 변경 */
+   background-color: black; /* 배경을 검정색으로 설정함 */
+   /* 배경색이 어두워서 텍스트 가독성을 위해 백그라운드 이미지 대신 검정색 배경을 사용합니다 */
 }
 
 .title {
-	margin-top: 0;
-	margin-bottom: 0.5rem;
-	font-size: 1.5em;
-	font-weight: 300;
-	letter-spacing: 0.5px;
-	line-height: 1.5;
-	color: black;
+   margin-top: 0;
+   margin-bottom: 0.5rem;
+   font-size: 1.5em;
+   font-weight: 300;
+   letter-spacing: 0.5px;
+   line-height: 1.5;
+   color: black;
 }
 
 .title b {
-	font-weight: 700;
+   font-weight: 700;
 }
 
 .mocean-modal-wrap {
-	display: flex;
-	justify-content: center;
-	color: white;
+   display: flex;
+   justify-content: center;
+   color: white;
 }
 
 .btn-group {
-	display: flex;
-	flex-wrap: wrap;
+   display: flex;
+   flex-wrap: wrap;
 }
 
 .btn-group button {
-	outline: 1px solid rgb(42.5, 122.0454545455, 255);
-	transform-origin: 50% 50%;
-	
-	
-	/* 버튼 크기 조정 */
-	padding: 50px; /* 버튼 안의 여백을 늘려 버튼을 더 크게 보이도록 설정 */
-	font-size: 1.2em; /* 폰트 크기를 키워서 버튼을 더 크게 보이도록 설정 */
-	width: 450px; /* 버튼의 너비를 키워서 더 크게 보이도록 설정 */
-	height: 350px; /* 버튼의 높이도 조정 */
-	
-	
-	/* 버튼 간격 설정 */
-	margin-right: 30px; /* 버튼 간격을 10px 추가 */
-	
-	
-	/* 폰트 스타일 추가: Arial과 볼드 처리 */
-	font-family: 'Arial', sans-serif; /* Arial 폰트로 설정 */
-	font-weight: bold; /* 글자 볼드 처리 */
-	
-	
-	/* 텍스트를 좌측 상단으로 이동시키기 위한 속성 추가 */
-	text-align: left; /* 텍스트를 왼쪽 정렬 */
-	/* padding-left: 10px; */ /* 왼쪽 여백 추가 */
-	/* padding-top: 10px; */ /* 상단 여백 추가 */
+   outline: 1px solid rgb(42.5, 122.0454545455, 255);
+   transform-origin: 50% 50%;
+   
+   
+   /* 버튼 크기 조정 */
+   padding: 50px; /* 버튼 안의 여백을 늘려 버튼을 더 크게 보이도록 설정 */
+   font-size: 1.2em; /* 폰트 크기를 키워서 버튼을 더 크게 보이도록 설정 */
+   width: 450px; /* 버튼의 너비를 키워서 더 크게 보이도록 설정 */
+   height: 350px; /* 버튼의 높이도 조정 */
+   
+   
+   /* 버튼 간격 설정 */
+   margin-right: 30px; /* 버튼 간격을 10px 추가 */
+   
+   
+   /* 폰트 스타일 추가: Arial과 볼드 처리 */
+   font-family: 'Arial', sans-serif; /* Arial 폰트로 설정 */
+   font-weight: bold; /* 글자 볼드 처리 */
+   
+   
+   /* 텍스트를 좌측 상단으로 이동시키기 위한 속성 추가 */
+   text-align: left; /* 텍스트를 왼쪽 정렬 */
+   /* padding-left: 10px; */ /* 왼쪽 여백 추가 */
+   /* padding-top: 10px; */ /* 상단 여백 추가 */
 }
 
 
@@ -159,9 +159,9 @@ p {
 
 
 .btn-group button span {
-	position: absolute; /* 텍스트를 절대적으로 배치 */
-	top: 10px; /* 상단에서 10px 위치 */
-	left: 10px; /* 왼쪽에서 10px 위치 */
+   position: absolute; /* 텍스트를 절대적으로 배치 */
+   top: 10px; /* 상단에서 10px 위치 */
+   left: 10px; /* 왼쪽에서 10px 위치 */
 }
 
 
@@ -169,24 +169,24 @@ p {
 
 
 .btn-group button:hover {
-	transform: scale(1.1);
+   transform: scale(1.1);
 }
 
 button {
-	appearance: none;
-	border: none;
-	box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.15), 0 1px 2px
-		rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
-	flex: 1 1 10%;
-	padding: 0.875rem;
-	transition: 100ms all ease-in-out;
-	width: 100%;
-	font-family: "Roboto Slab", serif;
-	font-weight: 400;
-	font-size: 0.75em;
-	text-transform: uppercase;
-	background: #448AFF;
-	color: white;
+   appearance: none;
+   border: none;
+   box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.15), 0 1px 2px
+      rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+   flex: 1 1 10%;
+   padding: 0.875rem;
+   transition: 100ms all ease-in-out;
+   width: 100%;
+   font-family: "Roboto Slab", serif;
+   font-weight: 400;
+   font-size: 0.75em;
+   text-transform: uppercase;
+   background: #448AFF;
+   color: white;
 }
 
 
@@ -217,124 +217,124 @@ button {
 
 
 button:hover {
-	cursor: pointer;
-	background: rgb(57.8, 131.6181818182, 255);
+   cursor: pointer;
+   background: rgb(57.8, 131.6181818182, 255);
 }
 
 button:focus {
-	outline: none;
+   outline: none;
 }
 
 .mocean-modal-wrap {
-	position: fixed;
-	max-width: 320px;
-	width: 100%;
-	z-index: 2000;
-	visibility: hidden;
-	backface-visibility: hidden;
-	width: 100%;
-	margin: auto;
+   position: fixed;
+   max-width: 320px;
+   width: 100%;
+   z-index: 2000;
+   visibility: hidden;
+   backface-visibility: hidden;
+   width: 100%;
+   margin: auto;
 }
 
 .mocean-modal-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	visibility: hidden;
-	transition-duration: 500ms;
-	/* 배경색을 불투명한 검은색으로 변경 */
-	background: rgba(0, 0, 0, 0.9); 
-	/* rgba 형식으로 검은색(0, 0, 0)을 설정하고, 불투명도 90%로 유지 */
-	opacity: 80%;
-	/* 설명: rgba(13, 71, 161, 0.8)에서 13, 71, 161은 파란색을 나타내며, 0.8은 80% 불투명도를 의미합니다. 이로 인해 배경이 약간 투명하게 보입니다. */
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   visibility: hidden;
+   transition-duration: 500ms;
+   /* 배경색을 불투명한 검은색으로 변경 */
+   background: rgba(0, 0, 0, 0.9); 
+   /* rgba 형식으로 검은색(0, 0, 0)을 설정하고, 불투명도 90%로 유지 */
+   opacity: 80%;
+   /* 설명: rgba(13, 71, 161, 0.8)에서 13, 71, 161은 파란색을 나타내며, 0.8은 80% 불투명도를 의미합니다. 이로 인해 배경이 약간 투명하게 보입니다. */
 }
 
 .mocean-show.mocean-modal-wrap {
-	visibility: visible;
+   visibility: visible;
 }
 
 .mocean-show.mocean-modal-wrap ~ .mocean-modal-overlay {
-	visibility: visible;
-	opacity: 1;
+   visibility: visible;
+   opacity: 1;
 }
 
 .mocean-modal {
-	transition-property: all;
-	transition-duration: 500ms;
-	transition-timing-function: cubic-bezier(0.4, 0, 0, 1.5);
-	animation-duration: 1000ms;
-	animation-fill-mode: forwards;
-	animation-timing-function: cubic-bezier(0.4, 0, 0, 1.5);
+   transition-property: all;
+   transition-duration: 500ms;
+   transition-timing-function: cubic-bezier(0.4, 0, 0, 1.5);
+   animation-duration: 1000ms;
+   animation-fill-mode: forwards;
+   animation-timing-function: cubic-bezier(0.4, 0, 0, 1.5);
 }
 
 .slide-in-top .mocean-content {
-	transform: translate3d(0, -100%, 0);
-	opacity: 0;
+   transform: translate3d(0, -100%, 0);
+   opacity: 0;
 }
 
 .mocean-show.slide-in-top .mocean-content {
-	transform: translate3d(0, 0, 0);
-	opacity: 1;
+   transform: translate3d(0, 0, 0);
+   opacity: 1;
 }
 
 .slide-in-right .mocean-content {
-	transform: translate3d(30%, 0, 0);
-	opacity: 0;
+   transform: translate3d(30%, 0, 0);
+   opacity: 0;
 }
 
 .mocean-show.slide-in-right .mocean-content {
-	transform: translate3d(0, 0, 0);
-	opacity: 1;
+   transform: translate3d(0, 0, 0);
+   opacity: 1;
 }
 
 .slide-in-bottom .mocean-content {
-	transform: translate3d(0, 30%, 0);
-	opacity: 0;
+   transform: translate3d(0, 30%, 0);
+   opacity: 0;
 }
 
 .mocean-show.slide-in-bottom .mocean-content {
-	transform: translate3d(0, 0, 0);
-	opacity: 1;
+   transform: translate3d(0, 0, 0);
+   opacity: 1;
 }
 
 .slide-in-left .mocean-content {
-	transform: translate3d(-30%, 0, 0);
-	opacity: 0;
+   transform: translate3d(-30%, 0, 0);
+   opacity: 0;
 }
 
 .mocean-show.slide-in-left .mocean-content {
-	transform: translate3d(0, 0, 0);
-	opacity: 1;
+   transform: translate3d(0, 0, 0);
+   opacity: 1;
 }
 
 .slide-out-bottom .mocean-content {
-	transform: translateY(100%);
-	opacity: 0;
+   transform: translateY(100%);
+   opacity: 0;
 }
 
 .slide-out-top .mocean-content {
-	transform: translateY(-100%);
-	opacity: 0;
+   transform: translateY(-100%);
+   opacity: 0;
 }
 
 .slide-out-right .mocean-content {
-	transform: translateX(100%);
-	opacity: 0;
+   transform: translateX(100%);
+   opacity: 0;
 }
 
 .slide-out-left .mocean-content {
-	transform: translateX(-100%);
-	opacity: 0;
+   transform: translateX(-100%);
+   opacity: 0;
 }
 
 .mocean-perspective {
-	perspective: 600px;
+   perspective: 600px;
 }
 
 .mocean-show {
-	visibility: visible;
+   visibility: visible;
 }
 
 
@@ -379,48 +379,48 @@ button.mocean-modal-close {
 }
 
 /* 메인으로 버튼 스타일 */
-/* button.mainBtn {
-    background-color: #448AFF; 파란색 배경
-    color: white; 텍스트 흰색
+#mocean-modal-close-mainBtn {
+    background-color: #448AFF; 
+    color: white;  
 }
 
 button.mainBtn:hover {
-    background-color: #1E90FF; 호버 시 파란색 진하게 변경
+    background-color: #1E90FF;  
 }
 
 
 
-결제하기 버튼 스타일
+ 
 button.btn-pay {
-    background-color: #FF5252; 결제하기 버튼을 빨간색으로 변경
-    color: white; 텍스트 흰색
+    background-color: #FF5252; 
+    color: white;  
 }
 
 button.btn-pay:hover {
-    background-color: #FF0000; 호버 시 빨간색으로 변경
+    background-color: #FF0000;  
 }
 
-닫기 버튼 스타일
+ 
 button.mocean-modal-close {
-    background-color: #333; 닫기 버튼을 어두운 색으로 설정
-    color: white; 텍스트 흰색
+    background-color: #333; 
+    color: white; 
 }
 
 button.mocean-modal-close:hover {
-    background-color: #555; 호버 시 색상 변경
+    background-color: #555;  
 }
 
 모달 창 배경
 .mocean-wrap.mocean-modal-wrap {
     display: flex;
-    align-items: center; 수직 중앙 정렬
-    justify-content: center; 수평 중앙 정렬
+    align-items: center;  
+    justify-content: center;  
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); 화면 배경을 어둡게 설정
+    background-color: rgba(0, 0, 0, 0.9);  
     z-index: 2000;
     visibility: visible;
     opacity: 1;
@@ -430,11 +430,14 @@ button.mocean-modal-close:hover {
 모달 창 자체 스타일
 .mocean-modal {
     width: 100%;
-    max-width: 500px; 모달의 최대 너비 설정
-    background-color: #2c2c2c; 모달 내부 배경색
-    border-radius: 15px; 모달의 테두리를 둥글게 처리
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); 모달 그림자 추가
-    padding: 20px; 모달 내부 패딩
+    max-width: 500px;  
+    background-color: #2c2c2c;  
+    border-radius: 15px;  
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);  
+    padding: 20px;  
 }
- */
+
+ 
+ 
+ 
 /*# sourceMappingURL=slidePopUp.css.map */

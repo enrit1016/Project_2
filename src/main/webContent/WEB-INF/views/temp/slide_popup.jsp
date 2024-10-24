@@ -220,12 +220,17 @@
       <div class="mocean-modal-content">
          <h3>월간결제</h3>
          <p>9,900원/월</p>
-         <button type="button" class="mocean-modal-close mainBtn" onClick="location.href='${root}main'">메인으로</button>
+         <button type="button" id="mocean-modal-close-mainBtn" onClick="location.href='${root}main'">메인으로</button>
         
          <button class="mocean-modal-close">닫기</button>
       </div>
    </div>
 </div>
+
+
+
+
+
 
 
 

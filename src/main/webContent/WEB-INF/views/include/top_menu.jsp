@@ -95,7 +95,7 @@
                         <div class="dropdown-content">
                             <a href="${root}/member/info">내 정보</a>
                             <a href="${root}/temp/slide_popup">상품/결제</a>
-                            <a href="${root }/board/main_sort?board_id=2">소식/정보</a>
+                            <a href="${root }/board/main?button=activated">문의하기</a>
                             <a href="${root}/member/logout">로그아웃</a>
                         </div>
                     </div>
