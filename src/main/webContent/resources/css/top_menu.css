@@ -152,6 +152,7 @@
 /* 드롭다운 메뉴 항목 hover 시 스타일 */
 .dropdown-content a:hover {
     background-color: #6c5ecf; /* 항목 hover 시 배경색 변경 */
+    border-radius: 10px;
 }
 
 /* 드롭다운 hover 시 드롭다운 메뉴 표시 */

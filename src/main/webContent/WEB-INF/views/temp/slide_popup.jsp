@@ -229,39 +229,6 @@
 
 
 
-<!-- .mocean-modal-wrap {
- position: fixed; /* 모달을 화면에 고정시킴 */
- top: 50%; /* 화면의 세로 중심 */
- left: 50%; /* 화면의 가로 중심 */
- transform: translate(-50%, -50%); /* 가로, 세로 중심으로부터 절반만큼 이동하여 완전히 중앙 배치 */
- z-index: 1000; /* 다른 요소들 위에 뜨도록 z-index 설정 */
- display: flex; /* 모달을 중앙에 띄우기 위한 flexbox 설정 */
- justify-content: center; /* 수평으로 중앙 정렬 */
- align-items: center; /* 수직으로 중앙 정렬 */
- visibility: hidden; /* 기본적으로 모달이 보이지 않도록 설정 */
- background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검정 배경 */
- width: 100%; /* 모달이 차지하는 가로 너비를 100%로 설정 */
- height: 100%; /* 모달이 차지하는 세로 높이를 100%로 설정 */
-}
-
-.mocean-show.mocean-modal-wrap {
- visibility: visible; /* 모달이 표시될 때 보이도록 설정 */
-}
-
-.mocean-modal {
- background-color: #1c1c1c; /* 모달의 배경색 */
- padding: 30px; /* 모달 내부 여백 */
- border-radius: 10px; /* 모서리를 둥글게 */
- box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
-} -->
-
-
-
-
-
-
-
-
 
 <!-- 연간 결제 모달 -->
 <div class="mocean-wrap mocean-modal-wrap" id="mocean-modal-2">
