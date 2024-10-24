@@ -221,7 +221,7 @@
          <h3>월간결제</h3>
          <p>9,900원/월</p>
          <button type="button" class="mocean-modal-close mainBtn" onClick="location.href='${root}main'">메인으로</button>
-         <button class="btn-pay">결제하기</button>
+<%--         <button class="btn-pay">결제하기</button>--%>
          <button class="mocean-modal-close">닫기</button>
       </div>
    </div>
@@ -271,7 +271,7 @@
          <h3>연간결제</h3>
          <p>99,900원/년</p>
          <button type="button" class="mocean-modal-close mainBtn" onClick="location.href='${root}main'">메인으로</button>
-         <button class="btn-pay annual">결제하기</button>
+<%--         <button class="btn-pay annual">결제하기</button>--%>
          <button class="mocean-modal-close">닫기</button>
       </div>
    </div>
