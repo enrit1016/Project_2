@@ -5,5 +5,7 @@
 ------
 >##### https://www.erdcloud.com/d/sFXcGYZt3BiztBqsz
 
+##### db.properties 수정 및 포트번호 8064 사용해야 정상 작동합니다.
+
 
 # 모두 수고하셨습니다
